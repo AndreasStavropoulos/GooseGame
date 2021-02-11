@@ -21,14 +21,28 @@ namespace TheGooseGame
 
         public int SumOfDices()
         {
-            int sum = Throws.Take(3).Sum();
+            int sum = Throws.Sum();
             return sum;
         }
 
-        public void Move(int cells)
+        public void Move(int diceAmount)
         {
-            Position += cells;
+            if (IsInReverse)
+            {
+                if ((Position +diceAmount) >63)
+                {
+                    Position = 63 - ((Position + diceAmount) % 63);
+                    //IsInReverse = true;
+                }
+                else
+                {
+                    Position -= diceAmount;
+                }
+            }
+            else
+            {
+                Position += diceAmount;
+            }
         }
-
     }
 }

@@ -6,7 +6,7 @@ using TheGooseGame.Intefaces;
 
 namespace TheGooseGame.Square
 {
-    class End : Square
+    class End : MySquare
     {
         public override void Action(IPlayer player)
         {

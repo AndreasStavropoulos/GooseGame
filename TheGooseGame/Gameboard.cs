@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TheGooseGame.Intefaces;
 using TheGooseGame.Square;
@@ -9,21 +10,22 @@ namespace TheGooseGame
     public class Gameboard
     {
         IList<IPlayer> players;
-        ISquare square;
+        ISquare square; 
+        
         
         int[] GooseSquares = new int[] {5,9,14,18,23,27,32,36,41,45,50,54,59};
 
         int Maze = 42;
         
 
-        public Gameboard(IList<IPlayer> players)
+        public Gameboard(IList<IPlayer> players, ISquare square)
         {
             this.players = players;
         }
 
         public Gameboard()
         {
-
+            //square = new MySquare();
         }
 
         //Dummy method to be expanded ...
@@ -32,12 +34,13 @@ namespace TheGooseGame
         {
             var currentPlayer = players[0];
             //foreach (IPlayer player in players)
-            int diceAmount = 9;
+            int diceAmount = 40;
             MovePlayer(currentPlayer, diceAmount);
         }
 
         public void MovePlayer(IPlayer currentPlayer, int diceAmount)
         {
+            currentPlayer.IsInReverse = IsPlayerInReverse(currentPlayer, diceAmount);
             currentPlayer.Move(diceAmount);
             //int turn = 0;
 
@@ -46,21 +49,47 @@ namespace TheGooseGame
                 //Reflection a method that calls itself
                 MovePlayer(currentPlayer, diceAmount);
             }
-            
-            else if (currentPlayer.IsInMaze)
+            if (IsPlayerInMaze(currentPlayer))
             {
-                //if in 42 go to 39
-                square.Action(currentPlayer);
+                InMaze(currentPlayer);
+                //square.Action(currentPlayer);
             }
         }
 
         private bool IsPlayerInGoose(IPlayer player)
         {
-            if (true) //This we have to make working 
+            if (GooseSquares.Contains(player.Position))
             {
                 return true;
             }
             return false;
         }
+
+        private bool IsPlayerInReverse(IPlayer player, int diceAmount)
+        {
+            if (player.Position+diceAmount >63)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPlayerInMaze(IPlayer player)
+        {
+            if (Maze == player.Position)
+            {
+                return true; 
+            }
+            return false;
+        }
+
+        #region Special Squears Actions
+
+        private void InMaze(IPlayer player)
+        {
+            player.Position = 39;
+        }
+        #endregion
     }
 }
+

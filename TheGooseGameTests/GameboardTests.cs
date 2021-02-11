@@ -22,7 +22,6 @@ namespace TheGooseGameTests
         {
             
             int diceAmount = 9;
-            var newPosition = 9;
 
             //Act
 
@@ -31,18 +30,36 @@ namespace TheGooseGameTests
             var result = player.Position;
 
             //Assert
-            Assert.AreEqual(result, newPosition);
+            Assert.AreEqual(result, 63);
         }
 
         [Test]
-        public void MovePlayer_WhenInMaze_PlayerPositionGoesToValue39()
+        public void MovePlayer__IsPlayerInMaze_GoToCoorectSquare()
         {
-            int expected = 39;
-            gameboard.MovePlayer(player, 42);
-           
-            var result = player.Position;
+            player.Position = 40;
+            int diceAmount = 2;
+            int expectedResult = 39;
 
-            Assert.AreEqual(expected, result);
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
+
+            Assert.AreEqual(expectedResult, actualResult);
         }
+
+
+        [Test]
+        public void MovePlayer_IsOver63_GoBackwords()
+        {
+            player.Position = 60;
+            int diceAmount = 4;
+            int expectedResult = 62;
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TheGooseGame.Square
 {
-    interface ISquare
+    public interface ISquare
     {
         void Action(IPlayer player);
     }
