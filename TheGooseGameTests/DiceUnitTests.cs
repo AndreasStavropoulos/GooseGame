@@ -20,7 +20,6 @@ namespace TheGooseGameTests
             //Arrange
             List<int> list = new List<int> { 1, 2 };
 
-
             //Act
             List<int> result = dice.Throw();
 
@@ -34,7 +33,7 @@ namespace TheGooseGameTests
             bool result = false;
             var tempList = dice.Throw();
             int tempResult = tempList[0] + tempList[1];
-            if (tempResult>1 && tempResult<13)
+            if (tempResult > 1 && tempResult < 13)
             {
                 result = true;
             }

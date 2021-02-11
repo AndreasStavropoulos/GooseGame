@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TheGooseGame.Intefaces;
+﻿using TheGooseGame.Intefaces;
 
 namespace TheGooseGame.Square
 {
-    class Prison :MySquare
+    internal class Prison : MySquare
     {
         public override void Action(IPlayer player)
         {

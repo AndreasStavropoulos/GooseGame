@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using System.Collections.Generic;
 using TheGooseGame;
-using TheGooseGame.Intefaces;
 
 namespace TheGooseGameTests
 {
@@ -20,12 +18,11 @@ namespace TheGooseGameTests
         [Test]
         public void MovePlayer_WhenCalled_MovesTheDiceAmount()
         {
-            
             int diceAmount = 9;
 
             //Act
 
-            gameboard.MovePlayer(player,diceAmount);
+            gameboard.MovePlayer(player, diceAmount);
 
             var result = player.Position;
 
@@ -47,7 +44,6 @@ namespace TheGooseGameTests
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-
         [Test]
         public void MovePlayer_IsOver63_GoBackwords()
         {
@@ -60,6 +56,5 @@ namespace TheGooseGameTests
             int actualResult = player.Position;
             Assert.AreEqual(expectedResult, actualResult);
         }
-
     }
 }

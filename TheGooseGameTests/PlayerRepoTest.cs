@@ -11,14 +11,14 @@ namespace TheGooseGameTests
         [SetUp]
         public void Setup()
         {
-            playerListFactory = new PlayerRepo(); 
+            playerListFactory = new PlayerRepo();
         }
 
         [Test]
         public void ListOfPlayers_WhenReturn_GivesAListOfCorrectNumberOfPlayers()
         {
             //Arrange
-            List<Player> players = new List<Player> { new Player(), new Player()};
+            List<Player> players = new List<Player> { new Player(), new Player() };
             var expected = players;
 
             //Act
@@ -27,8 +27,6 @@ namespace TheGooseGameTests
 
             //Assert
             Assert.AreEqual(expected.Count, result.Count);
-            
         }
-
     }
 }

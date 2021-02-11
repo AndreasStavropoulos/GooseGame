@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheGooseGame.Intefaces;
 
 namespace TheGooseGame
@@ -29,7 +27,7 @@ namespace TheGooseGame
         {
             if (IsInReverse)
             {
-                if ((Position +diceAmount) >63)
+                if ((Position + diceAmount) > 63)
                 {
                     Position = 63 - ((Position + diceAmount) % 63);
                     //IsInReverse = true;

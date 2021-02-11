@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TheGooseGame.Intefaces
 {
@@ -21,6 +18,5 @@ namespace TheGooseGame.Intefaces
         public int SumOfDices();
 
         public void Move(int cells);
-
     }
 }
