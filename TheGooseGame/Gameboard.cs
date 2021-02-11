@@ -39,13 +39,11 @@ namespace TheGooseGame
         public void MovePlayer(IPlayer currentPlayer, int diceAmount)
         {
             currentPlayer.Move(diceAmount);
-            int turn = 0;
+            //int turn = 0;
 
             if (IsPlayerInGoose(currentPlayer))
             {
                 //Reflection a method that calls itself
-                //Made a second change
-                turn++;
                 MovePlayer(currentPlayer, diceAmount);
             }
             
@@ -58,14 +56,11 @@ namespace TheGooseGame
 
         private bool IsPlayerInGoose(IPlayer player)
         {
-            //if (true)
-            //{
-            //    return true;
-            //}
-            //return false;
+            if (true) //This we have to make working 
+            {
+                return true;
+            }
             return false;
         }
-
-        
     }
 }
