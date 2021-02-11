@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheGooseGame.Intefaces;
 using TheGooseGame.Square;
 
@@ -9,14 +8,12 @@ namespace TheGooseGame
 {
     public class Gameboard
     {
-        IList<IPlayer> players;
-        ISquare square; 
-        
-        
-        int[] GooseSquares = new int[] {5,9,14,18,23,27,32,36,41,45,50,54,59};
+        private IList<IPlayer> players;
+        private ISquare square;
 
-        int Maze = 42;
-        
+        private int[] GooseSquares = new int[] { 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
+
+        private int Maze = 42;
 
         public Gameboard(IList<IPlayer> players, ISquare square)
         {
@@ -29,7 +26,7 @@ namespace TheGooseGame
         }
 
         //Dummy method to be expanded ...
-        
+
         public void GameLoop()
         {
             var currentPlayer = players[0];
@@ -67,7 +64,7 @@ namespace TheGooseGame
 
         private bool IsPlayerInReverse(IPlayer player, int diceAmount)
         {
-            if (player.Position+diceAmount >63)
+            if (player.Position + diceAmount > 63)
             {
                 return true;
             }
@@ -78,7 +75,7 @@ namespace TheGooseGame
         {
             if (Maze == player.Position)
             {
-                return true; 
+                return true;
             }
             return false;
         }
@@ -89,7 +86,7 @@ namespace TheGooseGame
         {
             player.Position = 39;
         }
-        #endregion
+
+        #endregion Special Squears Actions
     }
 }
-
