@@ -31,20 +31,6 @@ namespace TheGooseGameTests
         }
 
         [Test]
-        public void MovePlayer__IsPlayerInMaze_GoToCorrectSquare()
-        {
-            player.Position = 40;
-            int diceAmount = 2;
-            int expectedResult = 39;
-
-            gameboard.MovePlayer(player, diceAmount);
-
-            int actualResult = player.Position;
-
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [Test]
         public void MovePlayer_IsOver63_GoBackwords()
         {
             player.Position = 60;
@@ -72,6 +58,52 @@ namespace TheGooseGameTests
 
             int actualResult = player.Position;
 
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [Test]
+
+        public void MovePlayer_WhenOnBridge_MoveTo12()
+        {
+            player.Position = 3;
+
+            int diceAmount = 3;
+            int expectedResult = 12;
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [Test]
+        public void MovePlayer__IsPlayerInMaze_GoToCorrectSquare()
+        {
+            player.Position = 40;
+            int diceAmount = 2;
+            int expectedResult = 39;
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [Test]
+
+        public void MovePlayer_WhenInDeath_MoveToZero()
+        {
+            player.Position = 54;
+
+            int diceAmount = 4;
+            int expectedResult = 0;
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
 
             Assert.AreEqual(expectedResult, actualResult);
         }

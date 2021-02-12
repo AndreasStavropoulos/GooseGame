@@ -44,6 +44,7 @@ namespace TheGooseGame
         {
             var currentPlayer = players[0];
             //foreach (IPlayer player in players)
+            //TODO: create a repo of players
             int diceAmount = 40;
             MovePlayer(currentPlayer, diceAmount);
         }
@@ -70,22 +71,42 @@ namespace TheGooseGame
                 MovePlayer(currentPlayer, diceAmount);
             }
 
+            if (IsPlayerOnBridge(currentPlayer))
+            {
+                InBridge(currentPlayer);
+            }
+
+            if (IsPlayerInInn(currentPlayer))
+            {
+                //skip 1 turn
+            }
+
+            if (IsPlayerInWell(currentPlayer))
+            {
+                // If you come here, you need to wait until another player arrives. The one who was there first can continue playing
+            }
+
             if (IsPlayerInMaze(currentPlayer))
             {
                 InMaze(currentPlayer);
                 //squares[currentPlayer.Position].Action(currentPlayer);
             }
 
-            if (IsPlayerOnBridge(currentPlayer))
+            if (IsPlayerInPrison(currentPlayer))
+            {
+                // Skip 3 turns
+            }
+
+            if (IsPlayerDeath(currentPlayer))
+            {
+
+                InDeath(currentPlayer);
+            }
+
+            if (IsPlayerAtEnd(currentPlayer))
             {
 
             }
-
-            if (IsPlayerInInn(currentPlayer))
-            {
-
-            }
-
         }
 
         public bool IsPlayerInGoose(IPlayer player)
@@ -107,14 +128,7 @@ namespace TheGooseGame
             return false;
         }
 
-        private bool IsPlayerInMaze(IPlayer player)
-        {
-            if (Maze == player.Position)
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
         private bool IsPlayerOnBridge(IPlayer player)
         {
@@ -144,7 +158,16 @@ namespace TheGooseGame
             return false;
         }
 
-        private bool IsPlayerInWell(IPlayer player)
+        private bool IsPlayerInMaze(IPlayer player)
+        {
+            if (Maze == player.Position)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPlayerInPrison(IPlayer player)
         {
             if (Inn == player.Position)
             {
@@ -153,15 +176,43 @@ namespace TheGooseGame
             return false;
         }
 
+        private bool IsPlayerDeath(IPlayer player)
+        {
+            if (Death == player.Position)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        #region Special Squears Actions
+        private bool IsPlayerAtEnd(IPlayer player)
+        {
+            if (End == player.Position)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        private void InMaze(IPlayer player)
+
+
+        #region Special Squares Actions
+        
+        private void InMaze(IPlayer player) 
         {
             player.Position = 39;
         }
 
+        private void InBridge (IPlayer player)
+        {
+            player.Position = 12;
+        }
 
-        #endregion Special Squears Actions
+        private void InDeath(IPlayer player)
+        {
+            player.Position = 0;
+        }
+
+        #endregion Special Squares Actions
     }
 }
