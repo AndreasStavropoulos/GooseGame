@@ -17,7 +17,15 @@ namespace TheGooseGame
 
         private int Inn = 19;
 
+        private int Well = 31;
+
         private int Maze = 42;
+
+        private int Prison = 52;
+
+        private int Death = 58;
+
+        private int End = 63;
 
         public Gameboard(IList<IPlayer> players, IList <ISquare> squares)
         {
@@ -119,6 +127,24 @@ namespace TheGooseGame
 
 
         private bool IsPlayerInInn(IPlayer player)
+        {
+            if (Inn == player.Position)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPlayerInWell(IPlayer player)
+        {
+            if (Inn == player.Position)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPlayerInWell(IPlayer player)
         {
             if (Inn == player.Position)
             {
