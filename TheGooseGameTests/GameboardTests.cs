@@ -31,7 +31,7 @@ namespace TheGooseGameTests
         }
 
         [Test]
-        public void MovePlayer__IsPlayerInMaze_GoToCoorectSquare()
+        public void MovePlayer__IsPlayerInMaze_GoToCorrectSquare()
         {
             player.Position = 40;
             int diceAmount = 2;
@@ -55,6 +55,26 @@ namespace TheGooseGameTests
 
             int actualResult = player.Position;
             Assert.AreEqual(expectedResult, actualResult);
+
         }
+
+        [Test]
+
+        public void MovePlayer_WhenInReverseAndHitsAGoose_KeepsGoingBackwards()
+        {
+            player.IsOnGoose = true;
+            player.IsInReverse = true;
+            player.Position = 59;
+            int diceAmount = 5;
+            int expectedResult = 54;
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
+
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 }
