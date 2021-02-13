@@ -13,6 +13,7 @@ namespace TheGooseGame.Intefaces
         public bool IsInReverse { get; set; }
         public bool IsInNormalSquare { get; set; }
         public bool IsInMaze { get; set; }
+        public int TurnsToStayStill { get; set; }
         public List<int> Throws { get; set; }
 
         public int SumOfDices();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheGooseGame
 {
@@ -15,6 +16,11 @@ namespace TheGooseGame
                 throws.Add(random.Next(1, 7));
             }
             return throws;
+        }
+
+        public int SumOfTwoDices(List<int> diceThrow)
+        {
+            return diceThrow.Sum();
         }
     }
 }

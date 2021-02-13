@@ -18,7 +18,7 @@ namespace TheGooseGameTests
         public void ListOfPlayers_WhenReturn_GivesAListOfCorrectNumberOfPlayers()
         {
             //Arrange
-            List<Player> players = new List<Player> { new Player(), new Player() };
+            List<Player> players = new List<Player> { new Player(1), new Player(2) };
             var expected = players;
 
             //Act
