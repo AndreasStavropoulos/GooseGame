@@ -7,5 +7,11 @@ namespace TheGooseGame.Square
         public virtual void Action(IPlayer player)
         {
         }
+
+        public MySquare()
+        {
+
+        }
+
     }
 }

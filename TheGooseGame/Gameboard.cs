@@ -42,13 +42,9 @@ namespace TheGooseGame
 
         }
 
-        //Dummy method to be expanded ...
-
         public void GameLoop()
         {
-
             players = playerRepo.ListOfPlayers(4);
-
             int turn = 0;
             bool gameOver = false;
             while (!gameOver)
@@ -75,6 +71,7 @@ namespace TheGooseGame
                     if (player.PlayerWon)
                     {
                         gameOver = true;
+                        //Code for End Game
                     }
                 }
             }

@@ -5,7 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheGooseGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image
+            Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\Goose_Logo_1.png"
+            Stretch="None"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.ColumnSpan="2"
+            ></Image>
+        <StackPanel
+            Grid.Row="1">
+            <Button
+                x:Name="NewGameButton"
+                Content="New Game"
+                Margin="0,20,0,0"
+                Width="160"
+                >
+            </Button>
+            <Button
+                Margin="0,20,0,0"
+                x:Name="ExitGameButton"
+                Content="Exit"
+                Width="160"
+                >
+            </Button>
+            <Label 
+                Content="Select number of Players"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                FontSize="15"></Label>
+            <ComboBox 
+                Name="NumberOfPlayers"
+                Width="160"
+                >
+                <ComboBoxItem Content="2 Players"></ComboBoxItem>
+                <ComboBoxItem Content="4 Players"></ComboBoxItem>
+
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel
+                x:Name="GamePanel"
+                Grid.Row="1"
+                Grid.Column="1"
+                Background="Beige">
+            <ListView
+                x:Name="ListOfBlocks"
+                Background="{x:Null}"
+                BorderThickness="0"
+                VerticalAlignment="Stretch"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel>
+                            <TextBlock  
+                            x:Name="SquareBlockNumber"
+                            Text="{Binding Id}"
+                            FontSize="25"
+                            ></TextBlock>
+                            <TextBlock>
+
+                            </TextBlock>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="2"
+            >
+            <Label 
+                HorizontalAlignment="Center"
+                FontSize="25"
+                Content="Roll the Dice">
+            </Label>
+            <Button
+                Margin="5,20"
+                Background="white"
+                BorderThickness="0">
+                <StackPanel>
+                    <Image Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\dices.png"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        
+
+
+
+
     </Grid>
 </Window>
