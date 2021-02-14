@@ -1,4 +1,4 @@
-﻿using TheGooseGame.Intefaces;
+﻿using TheGooseGame.Interfaces;
 
 namespace TheGooseGame.Square
 {

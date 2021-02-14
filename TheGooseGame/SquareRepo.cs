@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TheGooseGame.Intefaces;
+using TheGooseGame.Interfaces;
 using TheGooseGame.Square;
 
 namespace TheGooseGame

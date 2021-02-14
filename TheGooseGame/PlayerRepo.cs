@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheGooseGame.Interfaces;
 
 namespace TheGooseGame
 {
@@ -6,9 +7,9 @@ namespace TheGooseGame
     {
         //public int NumberOfPlayers { get; set; }
 
-        public List<Player> ListOfPlayers(int numberOfPlayers)
+        public List<IPlayer> ListOfPlayers(int numberOfPlayers)
         {
-            List<Player> players = new List<Player>();
+            List<IPlayer> players = new List<IPlayer>();
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 players.Add(new Player());

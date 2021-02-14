@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheGooseGame.Intefaces;
+using TheGooseGame.Interfaces;
 using TheGooseGame.Square;
 
 namespace TheGooseGame
@@ -10,6 +10,11 @@ namespace TheGooseGame
     {
         private IList<IPlayer> players;
         private IList <ISquare> squares;
+        private PlayerRepo playerRepo;
+        private Dice dice;
+       
+       
+
 
         private int[] GooseSquares = new int[] { 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
 
@@ -27,10 +32,12 @@ namespace TheGooseGame
 
         private int End = 63;
 
-        public Gameboard(IList<IPlayer> players, IList <ISquare> squares)
+        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice)
         {
             this.players = players;
             this.squares = squares;
+            this.playerRepo = playerRepo;
+            this.dice = dice;
         }
 
         public Gameboard()
@@ -42,16 +49,27 @@ namespace TheGooseGame
 
         public void GameLoop()
         {
-            var currentPlayer = players[0];
-            //foreach (IPlayer player in players)
-            //TODO: create a repo of players
-            int diceAmount = 40;
-            MovePlayer(currentPlayer, diceAmount);
+            players = playerRepo.ListOfPlayers(2);
+
+            foreach (IPlayer player in players)
+            {
+                List<int>throws = dice.Throw();
+                int diceAmount = throws.Sum();
+
+                MovePlayer(player, diceAmount);
+            }
+            // choose the player
+            // start turn
+            //throw the dice
+//            int diceAmount = 40;
+            // check if its first turn of player => throw exceptions
+            // check if player is ABLE to play (<> prison)
+            
         }
 
         public void MovePlayer(IPlayer currentPlayer, int diceAmount)
         {
-            currentPlayer.IsInReverse = IsPlayerInReverse(currentPlayer, diceAmount);
+            currentPlayer.IsInReverse = CheckIfPlayerInReverse(currentPlayer, diceAmount);
             currentPlayer.Move(diceAmount);
             //int turn = 0;
 
@@ -119,7 +137,7 @@ namespace TheGooseGame
             return false;
         }
 
-        private bool IsPlayerInReverse(IPlayer player, int diceAmount)
+        private bool CheckIfPlayerInReverse(IPlayer player, int diceAmount)
         {
             if (player.Position + diceAmount > 63)
             {
@@ -214,5 +232,6 @@ namespace TheGooseGame
         }
 
         #endregion Special Squares Actions
+
     }
 }
