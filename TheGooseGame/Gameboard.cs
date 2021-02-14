@@ -29,13 +29,13 @@ namespace TheGooseGame
 
         private int End = 63;
 
-        //public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice)
-        //{
-        //    this.players = players;
-        //    this.squares = squares;
-        //    this.playerRepo = playerRepo;
-        //    this.dice = dice;
-        //}
+        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice)
+        {
+            this.players = players;
+            this.squares = squares;
+            this.playerRepo = playerRepo;
+            this.dice = dice;
+        }
 
         public Gameboard()
         {
@@ -53,7 +53,8 @@ namespace TheGooseGame
                 foreach (IPlayer player in players)
                 {
                     List<int> dices = dice.Throw();
-                    int amountOfDices = dice.SumOfTwoDices(dices);
+                    //int amountOfDices = dice.SumOfTwoDices(dices);
+                    int amountOfDices = dices.Sum();
 
                     if (turn == 1)
                     {
