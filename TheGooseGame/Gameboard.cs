@@ -16,19 +16,12 @@ namespace TheGooseGame
         private Dice _dice = new Dice(); //Here
 
         private int[] GooseSquares = new int[] { 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
-
         private int Bridge = 6;
-
         private int Inn = 19;
-
         private int Well = 31;
-
         private int Maze = 42;
-
         private int Prison = 52;
-
         private int Death = 58;
-
         private int End = 63;
 
         public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice, ISquare square)
