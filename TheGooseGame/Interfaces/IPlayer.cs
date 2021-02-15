@@ -16,12 +16,13 @@ namespace TheGooseGame
 
         int Position { get; set; }
 
+        public int AmountOFDice { get; set; }
+
+
         List<int> Throws { get; set; }
 
         int TurnsToStayStill { get; set; }
 
         void Move(int diceAmount);
-
-        int SumOfDices();
     }
 }

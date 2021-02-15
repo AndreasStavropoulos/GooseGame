@@ -29,6 +29,7 @@ namespace TheGooseGame
                 {
                     List<int> dices = _dice.Throw();
                     int amountOfDices = dices.Sum();
+                    player.AmountOFDice = amountOfDices;
 
                     if (turn == 1)
                     {
@@ -62,6 +63,7 @@ namespace TheGooseGame
 
         public void MovePlayer(IPlayer player, int diceAmount, ISquare square)
         {
+            // player.AmountOFDice = 5;       For test only, to delete later
             player.Move(diceAmount);
             square.Action(player);
         }

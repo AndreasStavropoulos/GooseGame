@@ -17,13 +17,10 @@ namespace TheGooseGame
         public bool IsOnGoose { get; set; }
         public bool IsInReverse { get; set; }
         public int TurnsToStayStill { get; set; }
+        public int AmountOFDice { get; set; }
+
         public List<int> Throws { get; set; }
 
-        public int SumOfDices()
-        {
-            int sum = Throws.Sum();
-            return sum;
-        }
 
         public void Move(int diceAmount)
         {
@@ -31,7 +28,7 @@ namespace TheGooseGame
             {
                 Position = 63 - ((Position + diceAmount) % 63);
                 IsInReverse = true;
-
+                
                 while (IsInReverse && IsOnGoose)
                 {
                     Position -= diceAmount;

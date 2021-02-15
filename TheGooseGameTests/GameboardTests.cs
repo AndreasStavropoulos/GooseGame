@@ -72,14 +72,50 @@ namespace TheGooseGameTests
             ISquare square = new Goose(-1);
             int diceAmount = 5;
             player = players[0];
-            player.Position = 0;
+            player.AmountOFDice = diceAmount;
+            player.Position = 18;
 
             // Act
             gameboard.MovePlayer(player, diceAmount, square);
              
             // Assert
-            Assert.AreEqual(10, player.Position);
+            Assert.AreEqual(28, player.Position);
         }
+
+        [Test]
+        public void Moveplayer_WhenLandingOnGooseAndNextSquareIsAlsoAGoose_PlayerIsMovedToCorrectPosition()
+        {
+            // Arrange
+            ISquare square = new Goose(-1);
+            int diceAmount = 4;
+            player = players[0];
+            player.AmountOFDice = diceAmount;
+            player.Position = 46;
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            // Assert
+            Assert.AreEqual(54, player.Position);
+        }
+
+        [Test]
+        public void Moveplayer_WhenLandingOnGooseAndOnReverse_PlayerIsMovedToCorrectPosition()
+        {
+            // Arrange
+            ISquare square = new Goose(-1);
+            int diceAmount = 6;
+            player = players[0];
+            player.AmountOFDice = diceAmount;
+            player.Position = 61;
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            // Assert
+            Assert.AreEqual(53, player.Position);
+        }
+
 
     }
 }

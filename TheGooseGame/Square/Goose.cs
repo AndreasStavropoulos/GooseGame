@@ -13,11 +13,11 @@
             player.IsOnGoose = true;
             if (player.IsInReverse == true)
             {
-                player.Position -= player.SumOfDices();
+                player.Position -= player.AmountOFDice; 
             }
             else
             {
-                player.Position += player.SumOfDices();
+                player.Position += player.AmountOFDice;
             }
         }
     }
