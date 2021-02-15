@@ -34,18 +34,18 @@ namespace TheGooseGame
 
         public void Move(int diceAmount)
         {
-            if (this.Position + diceAmount > 63 && !this.IsInReverse)
+            if (Position + diceAmount > 63 && !IsInReverse)
             {
-                this.Position = 63 - ((Position + diceAmount) % 63);
-                this.IsInReverse = true;
+                Position = 63 - ((Position + diceAmount) % 63);
+                IsInReverse = true;
                 IsOnGoose = Gameboard.IsPlayerInGoose(this);
 
-                while (this.IsInReverse && this.IsOnGoose)
+                while (IsInReverse && IsOnGoose)
                 {
                     Position -= diceAmount;
                     IsOnGoose = Gameboard.IsPlayerInGoose(this);
                 }
-                this.IsInReverse = false;
+                IsInReverse = false;
             } else
             {
                 Position += diceAmount;

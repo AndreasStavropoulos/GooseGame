@@ -8,10 +8,11 @@ namespace TheGooseGame
 {
     public class Gameboard
     {
-        private IList<IPlayer> players;
-        private IList <ISquare> squares;
-        private PlayerRepo playerRepo = new PlayerRepo();
-        private Dice dice = new Dice();
+        private IList<IPlayer> _players;
+        private IList <ISquare> _squares;
+        private ISquare _square = new MySquare();
+        private PlayerRepo _playerRepo = new PlayerRepo();
+        private Dice _dice = new Dice(); //Here
 
         private int[] GooseSquares = new int[] { 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
 
@@ -29,12 +30,13 @@ namespace TheGooseGame
 
         private int End = 63;
 
-        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice)
+        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice, ISquare square)
         {
-            this.players = players;
-            this.squares = squares;
-            this.playerRepo = playerRepo;
-            this.dice = dice;
+            _players = players;
+            _squares = squares;
+            _playerRepo = playerRepo;
+            _dice = dice;
+            _square = square;
         }
 
         public Gameboard()
@@ -44,21 +46,22 @@ namespace TheGooseGame
 
         public void GameLoop()
         {
-            players = playerRepo.ListOfPlayers(4);
+            _players = _playerRepo.ListOfPlayers(4);
             int turn = 0;
             bool gameOver = false;
             while (!gameOver)
             {
                 turn++;
-                foreach (IPlayer player in players)
+                foreach (IPlayer player in _players)
                 {
-                    List<int> dices = dice.Throw();
+                    List<int> dices = _dice.Throw();
                     //int amountOfDices = dice.SumOfTwoDices(dices);
                     int amountOfDices = dices.Sum();
 
                     if (turn == 1)
                     {
-                        FirstTurnThrow(player, dices); 
+                        FirstTurnThrow(player, dices);
+                        break;
                     }
                     if (player.TurnsToStayStill != 0)
                     {
@@ -90,7 +93,10 @@ namespace TheGooseGame
 
             if (IsPlayerOnBridge(player))
             {
-                InBridge(player);
+                //InBridge(player);
+
+                _square.Action(player);
+                var x = player.Position;
             }
 
             if (IsPlayerInMaze(player))
@@ -116,8 +122,8 @@ namespace TheGooseGame
 
             if (IsPlayerInWell(player))
             {
-                // If you come here, you need to wait until another player arrives. 
-                // The one who was there first can continue playing 
+                // If you are in well, you need to wait until another player arrives. 
+                // The one who was there first can continue 
             }
 
             if (IsPlayerAtEnd(player))
@@ -137,10 +143,10 @@ namespace TheGooseGame
             {
                 player.Position = 53;
             }
-            else
-            {
-                MovePlayer(player, (dices[0]+dices[1]));
-            }
+            //else
+            //{
+            //    //MovePlayer(player, (dices[0]+dices[1]));
+            //}
         }
 
         #region IsPlayerInASpecialSquare
