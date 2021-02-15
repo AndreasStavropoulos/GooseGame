@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using TheGooseGame;
-using TheGooseGame.Interfaces;
 
 namespace TheGooseGameTests
 {

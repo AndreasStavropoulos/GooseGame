@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public Square(int id)
+        public NormalSquare(int id)
         {
             Id = id;
         }

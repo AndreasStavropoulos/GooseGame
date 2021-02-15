@@ -2,13 +2,11 @@
 
 namespace TheGooseGame
 {
-    public class PlayerRepo
+    public class PlayerRepo : IPlayerRepo
     {
-        //public int NumberOfPlayers { get; set; }
-
         public IList<IPlayer> ListOfPlayers(int numberOfPlayers)
         {
-            List<IPlayer> players = new List<IPlayer>();
+            IList<IPlayer> players = new List<IPlayer>();
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 players.Add(new Player(i+1));

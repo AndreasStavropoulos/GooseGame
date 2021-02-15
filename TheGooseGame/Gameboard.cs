@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TheGooseGame.Square;
 
@@ -8,28 +7,19 @@ namespace TheGooseGame
     public class Gameboard
     {
         private IList<IPlayer> _players;
-
         private IList<ISquare> _squares;
-        private PlayerRepo _playerRepo;
         private Dice _dice; //Here
 
-        public Gameboard(IList<IPlayer> players, PlayerRepo playerRepo, Dice dice)
+        public Gameboard(IList<IPlayer> players, Dice dice)
         {
             _players = players;
             _squares = GenerateBoard();
-            _playerRepo = playerRepo;
             _dice = dice;
-        }
-
-        // For testing purposes
-        public Gameboard()
-        {
-
         }
 
         public void GameLoop()
         {
-            _players = _playerRepo.ListOfPlayers(4);
+          
             int turn = 0;
             bool gameOver = false;
             while (!gameOver)
@@ -38,7 +28,6 @@ namespace TheGooseGame
                 foreach (IPlayer player in _players)
                 {
                     List<int> dices = _dice.Throw();
-                    //int amountOfDices = dice.SumOfTwoDices(dices);
                     int amountOfDices = dices.Sum();
 
                     if (turn == 1)
@@ -52,7 +41,9 @@ namespace TheGooseGame
                     }
                     else
                     {
-                        MovePlayer(player, amountOfDices, );
+                        int squareToMoveTo = player.Position + amountOfDices;
+                        ISquare square = GetSquare(squareToMoveTo);
+                        MovePlayer(player, amountOfDices, square);
                     }
 
                     if (player.PlayerWon)
@@ -64,6 +55,10 @@ namespace TheGooseGame
             }
         }
 
+        private ISquare GetSquare(int id)
+        {
+            return _squares.FirstOrDefault(x => x.Id == id);
+        }
 
         public void MovePlayer(IPlayer player, int diceAmount, ISquare square)
         {
@@ -123,9 +118,8 @@ namespace TheGooseGame
         //    }
         //}
 
-        private void FirstTurnThrow(IPlayer player, List<int> dices)
+        private void FirstTurnThrow(IPlayer player, IList<int> dices)
         {
-            
             if (dices[0]==4 && dices[1]==5 || dices[0] == 5 && dices[1] == 4)
             {
                 player.Position = 26;
@@ -213,105 +207,5 @@ namespace TheGooseGame
 
             return list;
         }
-
-        #region IsPlayerInASpecialSquare
-
-        public bool IsPlayerInGoose(IPlayer player)
-        {
-            if (GooseSquares.Contains(player.Position))
-            {
-                player.IsOnGoose = true;
-                return true;
-            }
-            return false;
-        }  
-
-        private bool IsPlayerOnBridge(IPlayer player)
-        {
-            if (player.Position == Bridge)
-            {
-                
-                return true;
-            }
-            return false;
-        }
-        private bool IsPlayerInMaze(IPlayer player)
-        {
-            if (player.Position == Maze)
-            {
-               
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerDeath(IPlayer player)
-        {
-            if (player.Position == Death)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerInPrison(IPlayer player)
-        {
-            if (player.Position == Prison)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerInInn(IPlayer player)
-        {
-            if (player.Position== Inn)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerInWell(IPlayer player)
-        {
-            if (Inn == player.Position)
-            {
-                player.IsInWell = true;
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerAtEnd(IPlayer player)
-        {
-            if (player.Position == End)
-            {
-                player.PlayerWon = true;
-                return true;
-            }
-            return false;
-        }
-
-        #endregion 
-
-        #region Special Squares Actions
-
-        private void InMaze(IPlayer player) 
-        {
-            player.Position = 39;
-        }
-
-        private void InBridge (IPlayer player)
-        {
-            player.Position = 12;
-        }
-
-        private void InDeath(IPlayer player)
-        {
-            player.Position = 0;
-        }
-
-        #endregion Special Squares Actions
-
     }
 }

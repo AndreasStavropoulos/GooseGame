@@ -5,12 +5,11 @@ namespace TheGooseGame
 {
     public class Player : IPlayer
     {
-        Gameboard Gameboard = new Gameboard();
-
         public Player(int id)
         {
             Id = id;
         }
+
         public int Id { get; set; }
         public int Position { get; set; }
         public bool IsInWell { get; set; }
@@ -19,17 +18,6 @@ namespace TheGooseGame
         public bool IsInReverse { get; set; }
         public int TurnsToStayStill { get; set; }
         public List<int> Throws { get; set; }
-
-        //private int _count;
-
-        //public int Count
-        //{
-        //    get { return _count; }
-        //    set { _count = value; }
-        //}
-
-
-        //public int Turn { get; set; }
 
         public int SumOfDices()
         {
@@ -43,13 +31,12 @@ namespace TheGooseGame
             {
                 Position = 63 - ((Position + diceAmount) % 63);
                 IsInReverse = true;
-                IsOnGoose = Gameboard.IsPlayerInGoose(this);
 
                 while (IsInReverse && IsOnGoose)
                 {
                     Position -= diceAmount;
-                    IsOnGoose = Gameboard.IsPlayerInGoose(this);
                 }
+
                 IsInReverse = false;
             }
             else
@@ -57,29 +44,5 @@ namespace TheGooseGame
                 Position += diceAmount;
             }
         }
-
-        //public int CheckPositionOfPlayer(IList<IPlayer> players)
-        //{
-
-        //    int position = Position;
-
-        //    return position;
-        //}
-
-        //public void CountOfTurns(IList<IPlayer> players, List<int> throws)
-        //{
-        //    Count = 0;
-
-        //    if (Position.Equals(IsOnGoose))
-        //    {
-        //        foreach (var turn in throws)
-        //        {
-        //            Count++;
-        //            throws.Add(turn);
-        //        }
-        //    }
-        //    throws.Clear();
-        //}
-
     }
 }
