@@ -12,13 +12,14 @@ namespace TheGooseGameTests
         public void Setup()
         {
             gameboard = new Gameboard();
-            player = new Player();
+            player = new Player(1);
         }
 
         [Test]
         public void MovePlayer_WhenCalled_MovesTheDiceAmount()
         {
-            int diceAmount = 9;
+            player.Position = 0;
+            int diceAmount = 8;
 
             //Act
 
@@ -27,11 +28,29 @@ namespace TheGooseGameTests
             var result = player.Position;
 
             //Assert
-            Assert.AreEqual(result, 63);
+            Assert.AreEqual(result, 9);
+        }
+
+
+        [Test]
+
+        public void MovePlayer_WhenOnGoose_MovesAgainTheDiceamount()
+        {
+            player.Position = 0;
+            int diceAmount = 5;
+
+            //Act
+
+            gameboard.MovePlayer(player, diceAmount);
+
+            var result = player.Position;
+
+            //Assert
+            Assert.AreEqual(result, 10);
         }
 
         [Test]
-        public void MovePlayer_IsOver63_GoBackwords()
+        public void MovePlayer_IsOver63_GoesBack()
         {
             player.Position = 60;
             int diceAmount = 4;
@@ -43,22 +62,29 @@ namespace TheGooseGameTests
             Assert.AreEqual(expectedResult, actualResult);
 
         }
-
         [Test]
-
-        public void MovePlayer_WhenInReverseAndHitsAGoose_KeepsGoingBackwards()
+        public void MovePlayer_IsInReverseAndStepsOnGoose_GoesBack()
         {
-            player.IsOnGoose = true;
-            player.IsInReverse = true;
-            player.Position = 59;
-            int diceAmount = 5;
-            int expectedResult = 54;
+            player.Position = 61;
+            int diceAmount = 6;
+            int expectedResult = 53;
 
             gameboard.MovePlayer(player, diceAmount);
 
             int actualResult = player.Position;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
+        [Test]
+        public void MovePlayer_IsInReverseAndStepsOnGoose_GoesBackTwoTimes()
+        {
+            player.Position = 62;
+            int diceAmount = 5;
+            int expectedResult = 49;
 
+            gameboard.MovePlayer(player, diceAmount);
+
+            int actualResult = player.Position;
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -104,6 +130,21 @@ namespace TheGooseGameTests
             gameboard.MovePlayer(player, diceAmount);
 
             int actualResult = player.Position;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
+        [Test]
+        public void GameLoop_WhenFirstTurn_CanWork()
+        {
+            
+            var expectedResult = 26;
+
+
+            gameboard.GameLoop();
+
+            var actualResult = 7;
 
             Assert.AreEqual(expectedResult, actualResult);
         }

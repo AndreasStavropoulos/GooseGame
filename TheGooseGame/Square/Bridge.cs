@@ -2,7 +2,7 @@
 
 namespace TheGooseGame.Square
 {
-    internal class Bridge : MySquare
+    public class Bridge : MySquare
     {
         public override void Action(IPlayer player)
         {

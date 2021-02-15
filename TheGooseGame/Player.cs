@@ -6,15 +6,28 @@ namespace TheGooseGame
 {
     public class Player : IPlayer
     {
+        Gameboard Gameboard = new Gameboard();
+
+        public Player(int id)
+        {
+            Id = id;
+        }
+        public int Id { get; set; }
         public int Position { get; set; }
         public bool IsInInn { get; set; }
         public int PrisonYearsLeft { get; set; }
+        public bool IsInPrison { get; set; }
         public bool IsInWell { get; set; }
         public bool PlayerWon { get; set; }
         public bool IsOnGoose { get; set; }
         public bool IsInReverse { get; set; }
         public bool IsInNormalSquare { get; set; }
         public bool IsInMaze { get; set; }
+        public bool IsInBridge { get; set; }
+
+        public bool IsInDeath { get; set; }
+
+        public int TurnsToStayStill { get; set; }
         public List<int> Throws { get; set; }
 
         private int _count;
@@ -36,19 +49,19 @@ namespace TheGooseGame
 
         public void Move(int diceAmount)
         {
-            if (IsInReverse)
+            if (Position + diceAmount > 63 && !IsInReverse)
             {
-                if ((Position + diceAmount) > 63)
-                {
-                    Position = 63 - ((Position + diceAmount) % 63);
-                    //IsInReverse = true;
-                }
-                else
+                Position = 63 - ((Position + diceAmount) % 63);
+                IsInReverse = true;
+                IsOnGoose = Gameboard.IsPlayerInGoose(this);
+
+                while (IsInReverse && IsOnGoose)
                 {
                     Position -= diceAmount;
+                    IsOnGoose = Gameboard.IsPlayerInGoose(this);
                 }
-            }
-            else
+                IsInReverse = false;
+            } else
             {
                 Position += diceAmount;
             }

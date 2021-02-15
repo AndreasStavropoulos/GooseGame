@@ -8,124 +8,142 @@ namespace TheGooseGame
 {
     public class Gameboard
     {
-        private IList<IPlayer> players;
-        private IList <ISquare> squares;
-        private PlayerRepo playerRepo;
-        private Dice dice;
-       
-       
+        private IList<IPlayer> _players;
 
+        private IList<ISquare> _squares;
+        private ISquare _square = new Bridge();
+        private PlayerRepo _playerRepo = new PlayerRepo();
+        private Dice _dice = new Dice(); //Here
 
         private int[] GooseSquares = new int[] { 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
-
         private int Bridge = 6;
-
         private int Inn = 19;
-
         private int Well = 31;
-
         private int Maze = 42;
-
         private int Prison = 52;
-
         private int Death = 58;
-
         private int End = 63;
 
-        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice)
+        public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice, ISquare square)
         {
-            this.players = players;
-            this.squares = squares;
-            this.playerRepo = playerRepo;
-            this.dice = dice;
+            _players = players;
+            //_squares = squares;
+            _playerRepo = playerRepo;
+            _dice = dice;
+            _square = square;
         }
 
         public Gameboard()
         {
-            //square = new MySquare();
-        }
 
-        //Dummy method to be expanded ...
+        }
 
         public void GameLoop()
         {
-            players = playerRepo.ListOfPlayers(2);
-
-            foreach (IPlayer player in players)
+            _players = _playerRepo.ListOfPlayers(4);
+            int turn = 0;
+            bool gameOver = false;
+            while (!gameOver)
             {
-                List<int>throws = dice.Throw();
-                int diceAmount = throws.Sum();
-
-                MovePlayer(player, diceAmount);
-            }
-            // choose the player
-            // start turn
-            //throw the dice
-//            int diceAmount = 40;
-            // check if its first turn of player => throw exceptions
-            // check if player is ABLE to play (<> prison)
-            
-        }
-
-        public void MovePlayer(IPlayer currentPlayer, int diceAmount)
-        {
-            currentPlayer.IsInReverse = CheckIfPlayerInReverse(currentPlayer, diceAmount);
-            currentPlayer.Move(diceAmount);
-            //int turn = 0;
-
-
-            if (currentPlayer.IsInReverse)
-            {
-                if (IsPlayerInGoose(currentPlayer))
+                turn++;
+                foreach (IPlayer player in _players)
                 {
-                    currentPlayer.Position -= diceAmount;
-                    // TODO: this doesnt work = need to find 
+                    List<int> dices = _dice.Throw();
+                    //int amountOfDices = dice.SumOfTwoDices(dices);
+                    int amountOfDices = dices.Sum();
+
+                    if (turn == 1)
+                    {
+                        FirstTurnThrow(player, dices);
+                        break;
+                    }
+                    if (player.TurnsToStayStill != 0)
+                    {
+                        player.TurnsToStayStill--;
+                    }
+                    else
+                    {
+                        MovePlayer(player, amountOfDices);
+                    }
+
+                    if (player.PlayerWon)
+                    {
+                        gameOver = true;
+                        //Code for End Game
+                    }
                 }
             }
+        }
 
-            if (IsPlayerInGoose(currentPlayer))
+        public void MovePlayer(IPlayer player, int diceAmount)
+        {
+            player.Move(diceAmount);
+
+            if (IsPlayerInGoose(player))
             {
-                //Reflection a method that calls itself
-                MovePlayer(currentPlayer, diceAmount);
+                //Reflection -- a method that calls itself
+                MovePlayer(player, diceAmount);
             }
 
-            if (IsPlayerOnBridge(currentPlayer))
+            if (IsPlayerOnBridge(player))
             {
-                InBridge(currentPlayer);
+                //InBridge(player);
+                var xa = player.Position;
+                _square.Action(player);
+                var x = player.Position;
             }
 
-            if (IsPlayerInInn(currentPlayer))
+            if (IsPlayerInMaze(player))
             {
-                //skip 1 turn
+                //InMaze(player);
             }
 
-            if (IsPlayerInWell(currentPlayer))
+            if (IsPlayerDeath(player))
             {
-                // If you come here, you need to wait until another player arrives. The one who was there first can continue playing
+
+                InDeath(player);
             }
 
-            if (IsPlayerInMaze(currentPlayer))
+            if (IsPlayerInPrison(player))
             {
-                InMaze(currentPlayer);
-                //squares[currentPlayer.Position].Action(currentPlayer);
+                player.TurnsToStayStill = 3;
             }
 
-            if (IsPlayerInPrison(currentPlayer))
+            if (IsPlayerInInn(player))
             {
-                // Skip 3 turns
+                player.TurnsToStayStill = 1;
             }
 
-            if (IsPlayerDeath(currentPlayer))
+            if (IsPlayerInWell(player))
             {
-
-                InDeath(currentPlayer);
+                // If you are in well, you need to wait until another player arrives. 
+                // The one who was there first can continue 
             }
 
-            if (IsPlayerAtEnd(currentPlayer))
+            if (IsPlayerAtEnd(player))
             {
-
+                player.PlayerWon = true;
             }
         }
+
+        private void FirstTurnThrow(IPlayer player, List<int> dices)
+        {
+            
+            if (dices[0]==4 && dices[1]==5 || dices[0] == 5 && dices[1] == 4)
+            {
+                player.Position = 26;
+            }
+            if (dices[0] == 6 && dices[1] == 3 || dices[0] == 3 && dices[1] == 6)
+            {
+                player.Position = 53;
+            }
+            //else
+            //{
+            //    //MovePlayer(player, (dices[0]+dices[1]));
+            //}
+        }
+
+        #region IsPlayerInASpecialSquare
 
         public bool IsPlayerInGoose(IPlayer player)
         {
@@ -135,33 +153,52 @@ namespace TheGooseGame
                 return true;
             }
             return false;
-        }
-
-        private bool CheckIfPlayerInReverse(IPlayer player, int diceAmount)
-        {
-            if (player.Position + diceAmount > 63)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        
+        }  
 
         private bool IsPlayerOnBridge(IPlayer player)
         {
-            if (Bridge == player.Position)
+            if (player.Position == Bridge)
             {
+                player.IsInBridge = true;
+                return true;
+            }
+            return false;
+        }
+        private bool IsPlayerInMaze(IPlayer player)
+        {
+            if (player.Position == Maze)
+            {
+                player.IsInMaze = true;
                 return true;
             }
             return false;
         }
 
+        private bool IsPlayerDeath(IPlayer player)
+        {
+            if (player.Position == Death)
+            {
+                player.IsInDeath = true;
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPlayerInPrison(IPlayer player)
+        {
+            if (player.Position == Prison)
+            {
+                player.IsInPrison = true;
+                return true;
+            }
+            return false;
+        }
 
         private bool IsPlayerInInn(IPlayer player)
         {
-            if (Inn == player.Position)
+            if (player.Position== Inn)
             {
+                player.IsInInn = true;
                 return true;
             }
             return false;
@@ -171,33 +208,7 @@ namespace TheGooseGame
         {
             if (Inn == player.Position)
             {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerInMaze(IPlayer player)
-        {
-            if (Maze == player.Position)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerInPrison(IPlayer player)
-        {
-            if (Inn == player.Position)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsPlayerDeath(IPlayer player)
-        {
-            if (Death == player.Position)
-            {
+                player.IsInWell = true;
                 return true;
             }
             return false;
@@ -205,17 +216,18 @@ namespace TheGooseGame
 
         private bool IsPlayerAtEnd(IPlayer player)
         {
-            if (End == player.Position)
+            if (player.Position == End)
             {
+                player.PlayerWon = true;
                 return true;
             }
             return false;
         }
 
-
+        #endregion 
 
         #region Special Squares Actions
-        
+
         private void InMaze(IPlayer player) 
         {
             player.Position = 39;
