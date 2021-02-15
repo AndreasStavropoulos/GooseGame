@@ -17,10 +17,5 @@ namespace TheGooseGame
             }
             return throws;
         }
-
-        //public int SumOfTwoDices(List<int> diceThrow)
-        //{
-        //    return diceThrow.Sum();
-        //}
     }
 }

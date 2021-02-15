@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using TheGooseGame;
+using TheGooseGame.Interfaces;
 
 namespace TheGooseGameTests
 {
@@ -18,9 +19,9 @@ namespace TheGooseGameTests
         public void ListOfPlayers_WhenReturn_GivesAListOfCorrectNumberOfPlayers()
         {
             //Arrange
-            List<Player> players = new List<Player> { new Player(1), new Player(2) };
+            IList<IPlayer> players = new List<IPlayer> { new Player(1), new Player(2) };
             var expected = players;
-
+            
             //Act
 
             var result = playerListFactory.ListOfPlayers(2);
