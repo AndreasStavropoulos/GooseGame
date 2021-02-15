@@ -16,12 +16,16 @@ namespace TheGooseGame
         public int Position { get; set; }
         public bool IsInInn { get; set; }
         public int PrisonYearsLeft { get; set; }
+        public bool IsInPrison { get; set; }
         public bool IsInWell { get; set; }
         public bool PlayerWon { get; set; }
         public bool IsOnGoose { get; set; }
         public bool IsInReverse { get; set; }
         public bool IsInNormalSquare { get; set; }
         public bool IsInMaze { get; set; }
+        public bool IsInBridge { get; set; }
+
+        public bool IsInDeath { get; set; }
 
         public int TurnsToStayStill { get; set; }
         public List<int> Throws { get; set; }

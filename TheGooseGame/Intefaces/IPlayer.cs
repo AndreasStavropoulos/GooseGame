@@ -14,6 +14,9 @@ namespace TheGooseGame.Intefaces
         public bool IsInNormalSquare { get; set; }
         public bool IsInMaze { get; set; }
         public int TurnsToStayStill { get; set; }
+        public bool IsInBridge { get; set; }
+        public bool IsInDeath { get; set; }
+        public bool IsInPrison { get; set; }
         public List<int> Throws { get; set; }
 
         public int SumOfDices();

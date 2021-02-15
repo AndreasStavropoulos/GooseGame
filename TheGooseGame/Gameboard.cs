@@ -9,8 +9,9 @@ namespace TheGooseGame
     public class Gameboard
     {
         private IList<IPlayer> _players;
-        private IList <ISquare> _squares;
-        private ISquare _square = new MySquare();
+
+        private IList<ISquare> _squares;
+        private ISquare _square = new Bridge();
         private PlayerRepo _playerRepo = new PlayerRepo();
         private Dice _dice = new Dice(); //Here
 
@@ -33,7 +34,7 @@ namespace TheGooseGame
         public Gameboard(IList<IPlayer> players, IList <ISquare> squares, PlayerRepo playerRepo, Dice dice, ISquare square)
         {
             _players = players;
-            _squares = squares;
+            //_squares = squares;
             _playerRepo = playerRepo;
             _dice = dice;
             _square = square;
@@ -94,14 +95,14 @@ namespace TheGooseGame
             if (IsPlayerOnBridge(player))
             {
                 //InBridge(player);
-
+                var xa = player.Position;
                 _square.Action(player);
                 var x = player.Position;
             }
 
             if (IsPlayerInMaze(player))
             {
-                InMaze(player);
+                //InMaze(player);
             }
 
             if (IsPlayerDeath(player))
@@ -163,16 +164,18 @@ namespace TheGooseGame
 
         private bool IsPlayerOnBridge(IPlayer player)
         {
-            if (Bridge == player.Position)
+            if (player.Position == Bridge)
             {
+                player.IsInBridge = true;
                 return true;
             }
             return false;
         }
         private bool IsPlayerInMaze(IPlayer player)
         {
-            if (Maze == player.Position)
+            if (player.Position == Maze)
             {
+                player.IsInMaze = true;
                 return true;
             }
             return false;
@@ -180,8 +183,9 @@ namespace TheGooseGame
 
         private bool IsPlayerDeath(IPlayer player)
         {
-            if (Death == player.Position)
+            if (player.Position == Death)
             {
+                player.IsInDeath = true;
                 return true;
             }
             return false;
@@ -191,6 +195,7 @@ namespace TheGooseGame
         {
             if (player.Position == Prison)
             {
+                player.IsInPrison = true;
                 return true;
             }
             return false;
@@ -200,6 +205,7 @@ namespace TheGooseGame
         {
             if (player.Position== Inn)
             {
+                player.IsInInn = true;
                 return true;
             }
             return false;
@@ -209,6 +215,7 @@ namespace TheGooseGame
         {
             if (Inn == player.Position)
             {
+                player.IsInWell = true;
                 return true;
             }
             return false;
@@ -218,6 +225,7 @@ namespace TheGooseGame
         {
             if (player.Position == End)
             {
+                player.PlayerWon = true;
                 return true;
             }
             return false;

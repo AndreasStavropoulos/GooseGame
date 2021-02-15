@@ -24,10 +24,11 @@ namespace TheGooseGame
         {
             var result = new ObservableCollection<ISquare>
             {
-               new NormalSquare(0), 
+               new NormalSquare(0),
                new NormalSquare(1),
-               new NormalSquare(2), 
-               new NormalSquare(3), 
+               new NormalSquare(2),
+               new NormalSquare(3),
+               new Bridge()
             };
 
             return result;
