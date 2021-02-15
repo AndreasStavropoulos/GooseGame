@@ -1,6 +1,6 @@
 ﻿namespace TheGooseGame.Square
 {
-    internal class Death : NormalSquare
+    public class Death : NormalSquare
     {
         public override void Action(IPlayer player)
         {

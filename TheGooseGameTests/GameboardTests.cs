@@ -21,7 +21,7 @@ namespace TheGooseGameTests
         }
 
         [Test]
-        public void Moveplayer_WhenLandingOnSpecialSquare_PlayerIsMovedToCorrectPosition()
+        public void Moveplayer_WhenLandingOnBridge_PlayerIsMovedToCorrectPosition()
         {
             // Arrange
             ISquare square = new Bridge(-1);
@@ -34,5 +34,52 @@ namespace TheGooseGameTests
             // Assert
             Assert.AreEqual(12, player.Position);
         }
+
+        [Test]
+        public void Moveplayer_WhenLandingOnDeath_PlayerIsMovedToCorrectPosition()
+        {
+            // Arrange
+            ISquare square = new Death(-1);
+            int diceAmount = -1;
+            player = players[0];
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            // Assert
+            Assert.AreEqual(0, player.Position);
+        }
+
+        [Test]
+        public void Moveplayer_WhenLandingOnMaze_PlayerIsMovedToCorrectPosition()
+        {
+            // Arrange
+            ISquare square = new Maze(-1);
+            int diceAmount = -1;
+            player = players[0];
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            // Assert
+            Assert.AreEqual(39, player.Position);
+        }
+
+        [Test]
+        public void Moveplayer_WhenLandingOnGoose_PlayerIsMovedToCorrectPosition()
+        {
+            // Arrange
+            ISquare square = new Goose(-1);
+            int diceAmount = 5;
+            player = players[0];
+            player.Position = 0;
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+             
+            // Assert
+            Assert.AreEqual(10, player.Position);
+        }
+
     }
 }
