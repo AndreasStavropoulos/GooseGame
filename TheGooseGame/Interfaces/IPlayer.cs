@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheGooseGame.Intefaces
+namespace TheGooseGame.Interfaces
 {
     public interface IPlayer
     {
@@ -19,8 +19,14 @@ namespace TheGooseGame.Intefaces
         public bool IsInPrison { get; set; }
         public List<int> Throws { get; set; }
 
+        public int Turn { get; set; }
+
         public int SumOfDices();
 
         public void Move(int cells);
+
+        public int CheckPositionOfPlayer(IList<IPlayer> players);
+
+        public void CountOfTurns(IList<IPlayer> players, List<int> throws);
     }
 }

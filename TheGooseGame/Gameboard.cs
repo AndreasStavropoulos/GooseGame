@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheGooseGame.Intefaces;
+using TheGooseGame.Interfaces;
 using TheGooseGame.Square;
 
 namespace TheGooseGame
@@ -244,5 +244,6 @@ namespace TheGooseGame
         }
 
         #endregion Special Squares Actions
+
     }
 }

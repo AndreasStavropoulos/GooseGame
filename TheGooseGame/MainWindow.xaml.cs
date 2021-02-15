@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using TheGooseGame.Intefaces;
+using TheGooseGame.Interfaces;
 using TheGooseGame.Square;
 
 namespace TheGooseGame

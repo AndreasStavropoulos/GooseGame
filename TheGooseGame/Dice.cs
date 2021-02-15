@@ -13,7 +13,7 @@ namespace TheGooseGame
             List<int> throws = new List<int>();
             for (int i = 0; i < dice; i++)
             {
-                throws.Add(random.Next(1, 7));
+                throws.Add(random.Next(1, 6));
             }
             return throws;
         }
