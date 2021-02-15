@@ -1,9 +1,13 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class Maze : MySquare
+    public class Maze : NormalSquare
     {
+
+        public Maze(int id) : base(id)
+        {
+
+        }
+
         public override void Action(IPlayer player)
         {
             player.Position = 39;

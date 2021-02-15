@@ -1,9 +1,13 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class Goose : MySquare
+    public class Goose : NormalSquare
     {
+
+        public Goose(int id) : base(id)
+        {
+
+        }
+
         public override void Action(IPlayer player)
         {
             player.IsOnGoose = true;

@@ -1,9 +1,12 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class Well : MySquare
+    public class Well : NormalSquare
     {
+        public Well(int id) : base(id)
+        {
+
+        }
+
         public override void Action(IPlayer player)
         {
             player.IsInWell = true;

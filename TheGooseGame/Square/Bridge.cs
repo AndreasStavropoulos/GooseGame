@@ -1,12 +1,17 @@
-﻿using TheGooseGame.Interfaces;
+﻿
 
 namespace TheGooseGame.Square
 {
-    public class Bridge : MySquare
+    public class Bridge : NormalSquare
     {
         public override void Action(IPlayer player)
         {
             player.Position = 12;
+        }
+
+        public Bridge(int id): base(id)
+        {
+                
         }
     }
 }

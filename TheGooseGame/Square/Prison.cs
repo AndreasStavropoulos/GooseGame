@@ -1,18 +1,21 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class Prison : MySquare
+    public class Prison : NormalSquare
     {
+        public Prison(int id) : base(id)
+        {
+
+        }
+
         public override void Action(IPlayer player)
         {
-            if (player.PrisonYearsLeft == 0)
+            if (player.TurnsToStayStill == 0)
             {
-                player.PrisonYearsLeft = 3;
+                player.TurnsToStayStill = 3;
             }
             else
             {
-                player.PrisonYearsLeft--;
+                player.TurnsToStayStill--;
             }
         }
     }

@@ -1,9 +1,9 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
     public interface ISquare
     {
+        public int Id { get; set; }
+
         void Action(IPlayer player);
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 
-using TheGooseGame.Interfaces;
-
 namespace TheGooseGame
 {
     public class PlayerRepo

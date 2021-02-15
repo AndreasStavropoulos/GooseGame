@@ -1,12 +1,15 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class Inn : MySquare
+    public class Inn : NormalSquare
     {
+        public Inn(int id) : base(id)
+        {
+
+        }
+
         public override void Action(IPlayer player)
         {
-            player.IsInInn = true;
+            player.TurnsToStayStill++;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using TheGooseGame;
+using TheGooseGame.Square;
 
 namespace TheGooseGameTests
 {
@@ -149,5 +150,19 @@ namespace TheGooseGameTests
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [Test]
+        public void Moveplayer_WhenLandingOnSpecificSquare_PlayerDataUpdated()
+        {
+            // Arrange
+            ISquare square = new Bridge();
+            int diceAmount = -1;
+
+            // Act
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            // Assert
+            Assert.AreEqual(12, player.Position);
+             
+        }
     }
 }

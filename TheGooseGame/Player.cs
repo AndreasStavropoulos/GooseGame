@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TheGooseGame.Interfaces;
 
 namespace TheGooseGame
 {
@@ -14,32 +13,23 @@ namespace TheGooseGame
         }
         public int Id { get; set; }
         public int Position { get; set; }
-        public bool IsInInn { get; set; }
-        public int PrisonYearsLeft { get; set; }
-        public bool IsInPrison { get; set; }
         public bool IsInWell { get; set; }
         public bool PlayerWon { get; set; }
         public bool IsOnGoose { get; set; }
         public bool IsInReverse { get; set; }
-        public bool IsInNormalSquare { get; set; }
-        public bool IsInMaze { get; set; }
-        public bool IsInBridge { get; set; }
-
-        public bool IsInDeath { get; set; }
-
         public int TurnsToStayStill { get; set; }
         public List<int> Throws { get; set; }
 
-        private int _count;
+        //private int _count;
 
-        public int Count
-        {
-            get { return _count; }
-            set { _count = value; }
-        }
+        //public int Count
+        //{
+        //    get { return _count; }
+        //    set { _count = value; }
+        //}
 
 
-        public int Turn { get; set; }
+        //public int Turn { get; set; }
 
         public int SumOfDices()
         {
@@ -61,34 +51,35 @@ namespace TheGooseGame
                     IsOnGoose = Gameboard.IsPlayerInGoose(this);
                 }
                 IsInReverse = false;
-            } else
+            }
+            else
             {
                 Position += diceAmount;
             }
         }
 
-        public int CheckPositionOfPlayer(IList<IPlayer> players)
-        {
+        //public int CheckPositionOfPlayer(IList<IPlayer> players)
+        //{
 
-            int position = Position;
+        //    int position = Position;
 
-            return position;
-        }
+        //    return position;
+        //}
 
-        public void CountOfTurns(IList<IPlayer> players, List<int> throws)
-        {
-            Count = 0;
+        //public void CountOfTurns(IList<IPlayer> players, List<int> throws)
+        //{
+        //    Count = 0;
 
-            if (Position.Equals(IsOnGoose))
-            {
-                foreach (var turn in throws)
-                {
-                    Count++;
-                    throws.Add(turn);
-                }
-            }
-            throws.Clear();         
-        }
+        //    if (Position.Equals(IsOnGoose))
+        //    {
+        //        foreach (var turn in throws)
+        //        {
+        //            Count++;
+        //            throws.Add(turn);
+        //        }
+        //    }
+        //    throws.Clear();
+        //}
 
     }
 }

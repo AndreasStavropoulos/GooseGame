@@ -1,20 +1,17 @@
-﻿using TheGooseGame.Interfaces;
-
-namespace TheGooseGame.Square
+﻿namespace TheGooseGame.Square
 {
-    internal class NormalSquare : MySquare
+    public class NormalSquare : ISquare
     {
         public int Id { get; set; }
-        public ISquare Square { get; set; }
 
-        public override void Action(IPlayer player)
-        {
-            player.IsInNormalSquare = true;
-        }
-
-        public NormalSquare(int id)
+        public Square(int id)
         {
             Id = id;
+        }
+
+        public virtual void Action(IPlayer player)
+        {
+            
         }
     }
 }
