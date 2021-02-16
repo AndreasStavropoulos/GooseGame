@@ -3,5 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="Border" x:Key="Squares">
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="Beige"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="GooseSquares">
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="#FFDA1B1B"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="SpecialSquares">
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="#FF1F9924"/>
+        </Style>
+
+
+
     </Application.Resources>
 </Application>

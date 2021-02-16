@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TheGooseGame
 {
-    public class Dice
+    public class Dice : IDice
     {
         public Random random = new Random();
 

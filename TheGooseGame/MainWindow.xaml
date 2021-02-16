@@ -8,6 +8,7 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Window.Resources>
         <local:PlayerRepo x:Key="myRepo"/>
+        <local:Dice x:Key="myDice"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -53,10 +54,17 @@
                 Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 FontSize="15"></Label>
-            
-            <ComboBox 
+
+            <Button
+                x:Name="ChoosePlayers"
+                Content="2 players"
+                Width="160"
+                Click="ChoosePlayers_Click"/>
+
+            <!--<ComboBox 
                 Name="NumberOfPlayers"
-                Width="160">
+                Width="160"
+                SelectedValue="2">
                 <ComboBox.DataContext>
                     <Binding Source="{StaticResource myRepo}"/>
                 </ComboBox.DataContext>
@@ -65,7 +73,7 @@
                 <ComboBoxItem 
                     Content="4 Players"/>
 
-            </ComboBox>
+            </ComboBox>-->
         </StackPanel>
 
 
@@ -109,9 +117,8 @@
             <Border
                 x:Name="Zero"
                 Grid.Column="0"
-                Grid.Row="0"
-                BorderThickness="10"
-                BorderBrush="Beige"
+                Grid.Row="0"               
+                Style="{StaticResource Squares}"
                 >
                 <StackPanel>
                     <Label Content="Start"/>
@@ -123,6 +130,9 @@
                         <Label Content="player3"/>
                         <Label Content="player4"/>
                     </StackPanel>
+                    <StackPanel.DataContext>
+                        <Binding Source="{StaticResource myRepo}"/>
+                    </StackPanel.DataContext>
                 </StackPanel>
             </Border>
 
@@ -130,8 +140,7 @@
                 x:Name="One"
                 Grid.Column="1"
                 Grid.Row="0"
-                BorderThickness="10"
-                BorderBrush="Beige"
+                Style="{StaticResource Squares}"
                 >
                 <StackPanel>
                     <Label Content="1"/>
@@ -143,6 +152,9 @@
                         <Label Content="player3"/>
                         <Label Content="player4"/>
                     </StackPanel>
+                    <StackPanel.DataContext>
+                        <Binding Source="{StaticResource myRepo}"/>
+                    </StackPanel.DataContext>
                 </StackPanel>
             </Border>
 
@@ -156,8 +168,7 @@
                 x:Name="One"
                 Grid.Column="1"
                 Grid.Row="0"
-                BorderThickness="10"
-                BorderBrush="Beige"
+                Style="{StaticResource Squares}"
                 >
                 <StackPanel
                 
@@ -214,12 +225,17 @@
                 Content="Roll the Dice">
             </Label>
             <Button
+                Content="Button"
                 Margin="5,20"
                 Background="white"
-                BorderThickness="0">
-                <StackPanel>
+                BorderThickness="0"
+                Click="Button_Click">
+                <!--<Button.DataContext>
+                    <Binding Source="{StaticResource myDice}"/>
+                </Button.DataContext>-->
+                <!--<StackPanel>
                     <Image Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\dices.png"/>
-                </StackPanel>
+                </StackPanel>-->
             </Button>
         </StackPanel>
     </Grid>

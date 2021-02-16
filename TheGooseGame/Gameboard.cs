@@ -8,9 +8,10 @@ namespace TheGooseGame
     {
         private IList<IPlayer> _players;
         private IList<ISquare> _squares;
-        private Dice _dice;
+        private IDice _dice;
+        private IList<IDice> _dices;
 
-        public Gameboard(IList<IPlayer> players, Dice dice)
+        public Gameboard(IList<IPlayer> players, IDice dice)
         {
             _players = players;
             _squares = GenerateBoard();
