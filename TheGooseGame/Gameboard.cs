@@ -37,7 +37,8 @@ namespace TheGooseGame
                 // TODO: Turn per player
                 if (_turn == 1)
                 {
-                    FirstTurnThrow(player, dices);
+                    FirstTurnThrow(player, dices, amountOfDices);
+                    break;
                 }
 
                 if (player.TurnsToStayStill != 0)
@@ -87,19 +88,28 @@ namespace TheGooseGame
             square.Action(player);
         }
 
-        private void FirstTurnThrow(IPlayer player, IList<int> dices)
+        private void FirstTurnThrow(IPlayer player, IList<int> dices, int amountOfDices)
         {
             if (dices[0] == 4 && dices[1] == 5 || dices[0] == 5 && dices[1] == 4)
             {
                 player.MovePlayerToPosition(player, 26);
+                _squareToMoveTo = 26;
             }
 
             if (dices[0] == 6 && dices[1] == 3 || dices[0] == 3 && dices[1] == 6)
             {
                 player.MovePlayerToPosition(player, 53);
+                _squareToMoveTo = 53;
+            }
+            else
+            {
+                _squareToMoveTo = player.Position + amountOfDices;
+                ISquare square = GetSquare(_squareToMoveTo);
+                MovePlayer(player, amountOfDices, square);
             }
 
-            //Add something here
+            
+            
         }
 
         private IList<ISquare> GenerateBoard()
