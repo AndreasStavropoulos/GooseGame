@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:TheGooseGame"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <local:PlayerRepo></local:PlayerRepo>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -28,6 +31,7 @@
             ></Image>
         <StackPanel
             Grid.Row="1">
+            
             <Button
                 x:Name="NewGameButton"
                 Content="New Game"
@@ -35,22 +39,25 @@
                 Width="160"
                 >
             </Button>
+            
             <Button
-                Margin="0,20,0,0"
                 x:Name="ExitGameButton"
+                Margin="0,20,0,0"
                 Content="Exit"
                 Width="160"
                 >
             </Button>
+            
             <Label 
                 Content="Select number of Players"
                 Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 FontSize="15"></Label>
+            
             <ComboBox 
                 Name="NumberOfPlayers"
-                Width="160"
-                >
+                Width="160">
+                
                 <ComboBoxItem Content="2 Players"></ComboBoxItem>
                 <ComboBoxItem Content="4 Players"></ComboBoxItem>
 

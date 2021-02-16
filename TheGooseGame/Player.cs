@@ -28,13 +28,6 @@ namespace TheGooseGame
             {
                 Position = 63 - ((Position + diceAmount) % 63);
                 IsInReverse = true;
-                
-                while (IsInReverse && IsOnGoose)
-                {
-                    Position -= diceAmount;
-                }
-
-                IsInReverse = false;
             }
             else
             {

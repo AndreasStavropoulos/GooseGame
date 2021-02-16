@@ -2,8 +2,12 @@
 
 namespace TheGooseGame
 {
+    
+
     public class PlayerRepo : IPlayerRepo
     {
+        //public int numberOfPlayers { get; set; }
+
         public IList<IPlayer> ListOfPlayers(int numberOfPlayers)
         {
             IList<IPlayer> players = new List<IPlayer>();

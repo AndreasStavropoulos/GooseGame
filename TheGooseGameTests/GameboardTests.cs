@@ -116,6 +116,32 @@ namespace TheGooseGameTests
             Assert.AreEqual(53, player.Position);
         }
 
+        [Test]
+        public void MovePlayer_WhenLandingInInn_PlayerIsLoosingTurn()
+        {
+            ISquare square = new Inn(-2);
+            int diceAmount = -1;
+            player = players[0];
+            player.TurnsToStayStill = 0;
 
+
+            gameboard.MovePlayer(player, diceAmount, square);
+
+            Assert.AreEqual(1, player.TurnsToStayStill);
+        }
+
+        [Test]
+        public void GameLoop_Test()
+        {
+            
+            player = players[0];
+            player.TurnsToStayStill = 1;
+            
+            gameboard.GameLoop();
+
+
+            Assert.AreEqual(1, player.TurnsToStayStill);
+
+        }
     }
 }

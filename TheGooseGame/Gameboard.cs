@@ -8,7 +8,7 @@ namespace TheGooseGame
     {
         private IList<IPlayer> _players;
         private IList<ISquare> _squares;
-        private Dice _dice; //Here
+        private Dice _dice;
 
         public Gameboard(IList<IPlayer> players, Dice dice)
         {
@@ -63,62 +63,9 @@ namespace TheGooseGame
 
         public void MovePlayer(IPlayer player, int diceAmount, ISquare square)
         {
-            // player.AmountOFDice = 5;       For test only, to delete later
             player.Move(diceAmount);
             square.Action(player);
         }
-
-
-        //public void MovePlayer(IPlayer player, int diceAmount)
-        //{
-        //    player.Move(diceAmount);
-
-        //    if (IsPlayerInGoose(player))
-        //    {
-        //        //Reflection -- a method that calls itself
-        //        MovePlayer(player, diceAmount);
-        //    }
-
-        //    if (IsPlayerOnBridge(player))
-        //    {
-        //        //InBridge(player);
-        //        var xa = player.Position;
-        //        _square.Action(player);
-        //        var x = player.Position;
-        //    }
-
-        //    if (IsPlayerInMaze(player))
-        //    {
-        //        //InMaze(player);
-        //    }
-
-        //    if (IsPlayerDeath(player))
-        //    {
-
-        //        InDeath(player);
-        //    }
-
-        //    if (IsPlayerInPrison(player))
-        //    {
-        //        player.TurnsToStayStill = 3;
-        //    }
-
-        //    if (IsPlayerInInn(player))
-        //    {
-        //        player.TurnsToStayStill = 1;
-        //    }
-
-        //    if (IsPlayerInWell(player))
-        //    {
-        //        // If you are in well, you need to wait until another player arrives. 
-        //        // The one who was there first can continue 
-        //    }
-
-        //    if (IsPlayerAtEnd(player))
-        //    {
-        //        player.PlayerWon = true;
-        //    }
-        //}
 
         private void FirstTurnThrow(IPlayer player, IList<int> dices)
         {
@@ -130,12 +77,7 @@ namespace TheGooseGame
             {
                 player.Position = 53;
             }
-            //else
-            //{
-            //    //MovePlayer(player, (dices[0]+dices[1]));
-            //}
         }
-
         private IList<ISquare> GenerateBoard()
         {
             var list = new List<ISquare>
