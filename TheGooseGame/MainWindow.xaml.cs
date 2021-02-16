@@ -7,11 +7,11 @@ namespace TheGooseGame
 {
     public partial class MainWindow : Window
     {
-        PlayerRepo PlayerRepo;
         
         public MainWindow()
         {
             InitializeComponent();
+            
 
         }
 

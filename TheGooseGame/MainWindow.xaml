@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
     <Window.Resources>
-        <local:PlayerRepo></local:PlayerRepo>
+        <local:PlayerRepo x:Key="myRepo"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -57,14 +57,123 @@
             <ComboBox 
                 Name="NumberOfPlayers"
                 Width="160">
-                
-                <ComboBoxItem Content="2 Players"></ComboBoxItem>
-                <ComboBoxItem Content="4 Players"></ComboBoxItem>
+                <ComboBox.DataContext>
+                    <Binding Source="{StaticResource myRepo}"/>
+                </ComboBox.DataContext>
+                <ComboBoxItem 
+                    Content="2 Players" />
+                <ComboBoxItem 
+                    Content="4 Players"/>
 
             </ComboBox>
         </StackPanel>
 
-        <StackPanel
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            
+            x:Name="GameGrid"
+            >
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+            <!--<StackPanel
+                x:Name="Zero"
+                Grid.Column="0"
+                Grid.Row="0"
+                >
+                <Label Content="Start"/>
+                <Label Content="player1"/>
+            </StackPanel>-->
+            
+            <Border
+                x:Name="Zero"
+                Grid.Column="0"
+                Grid.Row="0"
+                BorderThickness="10"
+                BorderBrush="Beige"
+                >
+                <StackPanel>
+                    <Label Content="Start"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="player1"/>
+                        <Label Content="player2"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="player3"/>
+                        <Label Content="player4"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border
+                x:Name="One"
+                Grid.Column="1"
+                Grid.Row="0"
+                BorderThickness="10"
+                BorderBrush="Beige"
+                >
+                <StackPanel>
+                    <Label Content="1"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="player1"/>
+                        <Label Content="player2"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="player3"/>
+                        <Label Content="player4"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
+
+
+
+
+
+            <!--<Border
+                x:Name="One"
+                Grid.Column="1"
+                Grid.Row="0"
+                BorderThickness="10"
+                BorderBrush="Beige"
+                >
+                <StackPanel
+                
+                >
+                    <Label Content="1"/>
+                    <Label Content="player1"/>
+                </StackPanel>
+            </Border>-->
+            
+
+
+
+
+        </Grid>
+
+        <!--<StackPanel
                 x:Name="GamePanel"
                 Grid.Row="1"
                 Grid.Column="1"
@@ -93,7 +202,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-        </StackPanel>
+        </StackPanel>-->
 
         <StackPanel
             Grid.Row="1"
