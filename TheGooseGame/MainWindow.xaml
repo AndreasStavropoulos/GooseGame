@@ -31,7 +31,7 @@
             Grid.ColumnSpan="2"
             ></Image>
         <StackPanel
-            Grid.Row="1">
+            Grid.Row="1" Grid.Column="0">
             
             <Button
                 x:Name="NewGameButton"
@@ -76,144 +76,9 @@
             </ComboBox>-->
         </StackPanel>
 
-
-        <Grid
-            Grid.Row="1"
-            Grid.Column="1"
-            
-            x:Name="GameGrid"
-            >
-            <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-            <!--<StackPanel
-                x:Name="Zero"
-                Grid.Column="0"
-                Grid.Row="0"
-                >
-                <Label Content="Start"/>
-                <Label Content="player1"/>
-            </StackPanel>-->
-            
-            <Border
-                x:Name="Zero"
-                Grid.Column="0"
-                Grid.Row="0"               
-                Style="{StaticResource Squares}"
-                >
-                <StackPanel>
-                    <Label Content="Start"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="player1"/>
-                        <Label Content="player2"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="player3"/>
-                        <Label Content="player4"/>
-                    </StackPanel>
-                    <StackPanel.DataContext>
-                        <Binding Source="{StaticResource myRepo}"/>
-                    </StackPanel.DataContext>
-                </StackPanel>
-            </Border>
-
-            <Border
-                x:Name="One"
-                Grid.Column="1"
-                Grid.Row="0"
-                Style="{StaticResource Squares}"
-                >
-                <StackPanel>
-                    <Label Content="1"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="player1"/>
-                        <Label Content="player2"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="player3"/>
-                        <Label Content="player4"/>
-                    </StackPanel>
-                    <StackPanel.DataContext>
-                        <Binding Source="{StaticResource myRepo}"/>
-                    </StackPanel.DataContext>
-                </StackPanel>
-            </Border>
-
-
-
-
-
-
-
-            <!--<Border
-                x:Name="One"
-                Grid.Column="1"
-                Grid.Row="0"
-                Style="{StaticResource Squares}"
-                >
-                <StackPanel
-                
-                >
-                    <Label Content="1"/>
-                    <Label Content="player1"/>
-                </StackPanel>
-            </Border>-->
-            
-
-
-
-
-        </Grid>
-
-        <!--<StackPanel
-                x:Name="GamePanel"
-                Grid.Row="1"
-                Grid.Column="1"
-                Background="Beige">
-            <ListView
-                x:Name="ListOfBlocks"
-                Background="{x:Null}"
-                BorderThickness="0"
-                VerticalAlignment="Stretch"
-                >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-
-                        <StackPanel>
-                            <TextBlock  
-                            x:Name="SquareBlockNumber"
-                            Text="{Binding Id}"
-                            FontSize="25"
-                            ></TextBlock>
-                            <TextBlock>
-
-                            </TextBlock>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-        </StackPanel>-->
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    x:Name="MyBoard">
+        </StackPanel>
 
         <StackPanel
             Grid.Row="1"
@@ -230,12 +95,6 @@
                 Background="white"
                 BorderThickness="0"
                 Click="Button_Click">
-                <!--<Button.DataContext>
-                    <Binding Source="{StaticResource myDice}"/>
-                </Button.DataContext>-->
-                <!--<StackPanel>
-                    <Image Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\dices.png"/>
-                </StackPanel>-->
             </Button>
         </StackPanel>
     </Grid>

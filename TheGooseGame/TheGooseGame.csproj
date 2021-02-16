@@ -10,4 +10,14 @@
     <Compile Remove="Square\Square.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Images\red_pawn.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\red_pawn.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>

@@ -72,7 +72,7 @@ namespace TheGooseGameTests
             ISquare square = new Goose(-1);
             int diceAmount = 5;
             player = players[0];
-            player.AmountOFDice = diceAmount;
+            player.AmountOfDice = diceAmount;
             player.Position = 18;
 
             // Act
@@ -89,7 +89,7 @@ namespace TheGooseGameTests
             ISquare square = new Goose(-1);
             int diceAmount = 4;
             player = players[0];
-            player.AmountOFDice = diceAmount;
+            player.AmountOfDice = diceAmount;
             player.Position = 46;
 
             // Act
@@ -106,7 +106,7 @@ namespace TheGooseGameTests
             ISquare square = new Goose(-1);
             int diceAmount = 6;
             player = players[0];
-            player.AmountOFDice = diceAmount;
+            player.AmountOfDice = diceAmount;
             player.Position = 61;
 
             // Act

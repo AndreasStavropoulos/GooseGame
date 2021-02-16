@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
@@ -14,15 +15,18 @@ namespace TheGooseGame
 
         bool PlayerWon { get; set; }
 
-        int Position { get; set; }
+        int Position { get;  set; }
 
-        public int AmountOFDice { get; set; }
+        public int AmountOfDice { get; set; }
 
+        public string Pawn { get; set; }
 
         List<int> Throws { get; set; }
 
         int TurnsToStayStill { get; set; }
 
         void Move(int diceAmount);
+
+        void MovePlayerToPosition(IPlayer player, int id);
     }
 }

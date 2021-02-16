@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
@@ -12,15 +12,22 @@ namespace TheGooseGame
 
         public int Id { get; set; }
         public int Position { get; set; }
+
         public bool IsInWell { get; set; }
+
         public bool PlayerWon { get; set; }
+
         public bool IsOnGoose { get; set; }
+
         public bool IsInReverse { get; set; }
+
         public int TurnsToStayStill { get; set; }
-        public int AmountOFDice { get; set; }
+
+        public int AmountOfDice { get; set; }
+
+        public string Pawn { get; set; }
 
         public List<int> Throws { get; set; }
-
 
         public void Move(int diceAmount)
         {
@@ -33,6 +40,12 @@ namespace TheGooseGame
             {
                 Position += diceAmount;
             }
+        }
+
+        // TODO: Best location for this method?
+        public void MovePlayerToPosition(IPlayer player, int square)
+        {
+            player.Position = square;
         }
     }
 }
