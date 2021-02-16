@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 
 namespace TheGooseGame.Square
 {
@@ -12,6 +13,7 @@ namespace TheGooseGame.Square
         public override void Action(IPlayer player)
         {
             player.TurnsToStayStill++;
+            MessageBox.Show("Wait 1 turn");
         }
     }
 }

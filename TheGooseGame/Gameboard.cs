@@ -55,6 +55,8 @@ namespace TheGooseGame
                     _gameOver = true;
                     //Code for End Game
                 }
+
+                //Update the screen here for next player
             }
         }
 
@@ -81,6 +83,8 @@ namespace TheGooseGame
             {
                 player.MovePlayerToPosition(player, 53);
             }
+
+            //Add something here
         }
 
         private IList<ISquare> GenerateBoard()

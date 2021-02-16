@@ -8,7 +8,6 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Window.Resources>
         <local:PlayerRepo x:Key="myRepo"/>
-        <local:Dice x:Key="myDice"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,7 +32,7 @@
         <StackPanel
             Grid.Row="1" Grid.Column="0">
             
-            <Button
+            <!--<Button
                 x:Name="NewGameButton"
                 Content="New Game"
                 Margin="0,20,0,0"
@@ -47,7 +46,7 @@
                 Content="Exit"
                 Width="160"
                 >
-            </Button>
+            </Button>-->
             
             <Label 
                 Content="Select number of Players"
@@ -56,24 +55,160 @@
                 FontSize="15"></Label>
 
             <Button
-                x:Name="ChoosePlayers"
+                x:Name="Choose2Players"
                 Content="2 players"
                 Width="160"
                 Click="ChoosePlayers_Click"/>
 
-            <!--<ComboBox 
-                Name="NumberOfPlayers"
-                Width="160"
-                SelectedValue="2">
-                <ComboBox.DataContext>
-                    <Binding Source="{StaticResource myRepo}"/>
-                </ComboBox.DataContext>
-                <ComboBoxItem 
-                    Content="2 Players" />
-                <ComboBoxItem 
-                    Content="4 Players"/>
+            <Button
+                x:Name="Choose4Players"
+                Content="4 players"
+                Width="160"                             
+                Margin="0,10,0,0">
+                
+            </Button>
 
-            </ComboBox>-->
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="White"
+                >
+                <Label
+                Content="Square"
+                HorizontalAlignment="Center"
+                Foreground="Black"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="red"
+                >
+                <Label
+                Content="Goose"
+                HorizontalAlignment="Center"
+                Foreground="white"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="green"
+                >
+                <Label
+                Content="Bridge"
+                HorizontalAlignment="Center"
+                Foreground="white"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="pink"
+                >
+                <Label
+                Content="Death"
+                HorizontalAlignment="Center"
+                Foreground="Black"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="Orange"
+                >
+                <Label
+                Content="End"
+                HorizontalAlignment="Center"
+                Foreground="Black"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="Blue"
+                >
+                <Label
+                Content="Inn"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="Indigo"
+                >
+                <Label
+                Content="Maze"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="Gray"
+                >
+                <Label
+                Content="Prison"
+                HorizontalAlignment="Center"
+                Foreground="white"
+                
+                ></Label>
+            </Border>
+
+            <Border 
+                Margin="0,25,0,0"
+                BorderThickness="2"
+                BorderBrush="Black"
+                Width="150"
+                Background="Yellow"
+                >
+                <Label
+                Content="Well"
+                HorizontalAlignment="Center"
+                Foreground="Black"
+                
+                ></Label>
+            </Border>
+              
+
+
+
+
+
+
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1"
@@ -90,12 +225,16 @@
                 Content="Roll the Dice">
             </Label>
             <Button
-                Content="Button"
                 Margin="5,20"
                 Background="white"
                 BorderThickness="0"
                 Click="Button_Click">
+                <Image Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\dices.png"/>
             </Button>
+
+            <Label
+                HorizontalAlignment="Center"
+                Content="Dice Amount Holder"/>
         </StackPanel>
     </Grid>
 </Window>
