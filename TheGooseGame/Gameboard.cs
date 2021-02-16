@@ -10,6 +10,7 @@ namespace TheGooseGame
         private IDice _dice;
         private int _turn;
         private bool _gameOver;
+        private int _squareToMoveTo { get; set; }
 
         public IList<IPlayer> Players { get; set; }
 
@@ -45,15 +46,33 @@ namespace TheGooseGame
                 }
                 else
                 {
-                    int squareToMoveTo = player.Position + amountOfDices;
-                    ISquare square = GetSquare(squareToMoveTo);
+                    if (player.Position + amountOfDices > 63 && !player.IsInReverse)
+                    {
+                        _squareToMoveTo = player.Position;
+                    }
+                    else if (player.IsInReverse)
+                    {
+                        _squareToMoveTo = player.Position - amountOfDices;
+                    }
+                    else
+                    {
+                        _squareToMoveTo = player.Position + amountOfDices;
+                    }
+
+                    ISquare square = GetSquare(_squareToMoveTo);
                     MovePlayer(player, amountOfDices, square);
+
+
+                    //int squareToMoveTo = player.Position + amountOfDices;
+                    //ISquare square = GetSquare(squareToMoveTo);
+                    //MovePlayer(player, amountOfDices, square);
+
                 }
 
                 if (player.PlayerWon)
                 {
                     _gameOver = true;
-                    //Code for End Game
+                    MessageBox.Show("You have won!");
                 }
 
                 //Update the screen here for next player
@@ -121,7 +140,7 @@ namespace TheGooseGame
                 new Goose(27),
                 new NormalSquare(28),
                 new NormalSquare(29),
-                new NormalSquare(20),
+                new NormalSquare(30),
                 new Well(31),
                 new Goose(32),
                 new NormalSquare(33),
