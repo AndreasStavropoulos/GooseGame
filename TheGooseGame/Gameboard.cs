@@ -48,11 +48,7 @@ namespace TheGooseGame
                 {
                     if (player.Position + amountOfDices > 63 && !player.IsInReverse)
                     {
-                        _squareToMoveTo = player.Position;
-                    }
-                    else if (player.IsInReverse)
-                    {
-                        _squareToMoveTo = player.Position - amountOfDices;
+                        _squareToMoveTo = 63 - ((player.Position + amountOfDices) % 63);
                     }
                     else
                     {
