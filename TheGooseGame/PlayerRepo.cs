@@ -2,18 +2,14 @@
 
 namespace TheGooseGame
 {
-    
-
     public class PlayerRepo : IPlayerRepo
     {
-        //public int numberOfPlayers { get; set; }
-
         public IList<IPlayer> ListOfPlayers(int numberOfPlayers)
         {
             IList<IPlayer> players = new List<IPlayer>();
-            for (int i = 0; i < numberOfPlayers; i++)
+            for (int i = 1; i <= numberOfPlayers; i++)
             {
-                players.Add(new Player(i+1));
+                players.Add(new Player(i, "https://freesvg.org/img/red-pawn.png"));
             }
             return players;
         }

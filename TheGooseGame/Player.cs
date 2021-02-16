@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
     public class Player : IPlayer
     {
-        public Player(int id)
+        public Player(int id, string pawnImage)
         {
             Id = id;
-            Pawn = "https://freesvg.org/img/red-pawn.png";
+            Pawn = pawnImage;
         }
 
         public int Id { get; set; }
@@ -40,6 +41,12 @@ namespace TheGooseGame
             {
                 Position += diceAmount;
             }
+        }
+
+        // TODO: Best location for this method?
+        public void MovePlayerToPosition(IPlayer player, int square)
+        {
+            player.Position = square;
         }
     }
 }
