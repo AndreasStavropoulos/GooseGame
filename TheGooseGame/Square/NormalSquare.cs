@@ -15,6 +15,7 @@ namespace TheGooseGame.Square
         {
             Id = id;
             PlayersOnSquare = new List<IPlayer>();
+            BackColor = Colors.White;
         }
 
         public virtual void Action(IPlayer player)

@@ -17,6 +17,21 @@
             <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="#FF1F9924"/>
         </Style>
+        <Style TargetType="Button" x:Key="PlayerButtons">
+            <Setter Property="Background" Value="#FF13B213" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#FFC8CF32"/>
+            <Setter Property="Foreground" Value="#FFC8CF32"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="PlayerLabel">
+            <Setter Property="Background" Value="#FF13B213" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#FFC8CF32"/>
+            <Setter Property="Foreground" Value="#FFC8CF32"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
 
 
 
