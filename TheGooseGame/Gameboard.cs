@@ -4,23 +4,29 @@ using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
-    public class Gameboard
+    public class Gameboard : IGameboard
     {
         private IList<IPlayer> _players;
-        private IList<ISquare> _squares;
         private IDice _dice;
-        private IList<IDice> _dices;
+
+        private IList<ISquare> _squares;
+
+        public IList<ISquare> Squares
+        {
+            get { return _squares; }
+            set { _squares = value; }
+        }
+
 
         public Gameboard(IList<IPlayer> players, IDice dice)
         {
             _players = players;
-            _squares = GenerateBoard();
+            Squares = GenerateBoard();
             _dice = dice;
         }
 
         public void GameLoop()
         {
-          
             int turn = 0;
             bool gameOver = false;
             while (!gameOver)
@@ -37,6 +43,7 @@ namespace TheGooseGame
                         FirstTurnThrow(player, dices);
                         break;
                     }
+
                     if (player.TurnsToStayStill != 0)
                     {
                         player.TurnsToStayStill--;
@@ -57,9 +64,9 @@ namespace TheGooseGame
             }
         }
 
-        private ISquare GetSquare(int id)
+        public ISquare GetSquare(int id)
         {
-            return _squares.FirstOrDefault(x => x.Id == id);
+            return Squares.FirstOrDefault(x => x.Id == id);
         }
 
         public void MovePlayer(IPlayer player, int diceAmount, ISquare square)
@@ -70,15 +77,17 @@ namespace TheGooseGame
 
         private void FirstTurnThrow(IPlayer player, IList<int> dices)
         {
-            if (dices[0]==4 && dices[1]==5 || dices[0] == 5 && dices[1] == 4)
+            if (dices[0] == 4 && dices[1] == 5 || dices[0] == 5 && dices[1] == 4)
             {
                 player.Position = 26;
             }
+
             if (dices[0] == 6 && dices[1] == 3 || dices[0] == 3 && dices[1] == 6)
             {
                 player.Position = 53;
             }
         }
+
         private IList<ISquare> GenerateBoard()
         {
             var list = new List<ISquare>
@@ -148,7 +157,6 @@ namespace TheGooseGame
                 new NormalSquare(62),
                 new End(63),
             };
-
 
             return list;
         }

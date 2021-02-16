@@ -1,11 +1,12 @@
-﻿namespace TheGooseGame.Square
+﻿using System.Windows.Media;
+
+namespace TheGooseGame.Square
 {
     public class Goose : NormalSquare
     {
-
         public Goose(int id) : base(id)
         {
-
+            BackColor = Colors.Red;
         }
 
         public override void Action(IPlayer player)
@@ -22,7 +23,7 @@
             else
             {
                 player.Position += player.AmountOFDice;
-            } 
+            }
         }
     }
 }

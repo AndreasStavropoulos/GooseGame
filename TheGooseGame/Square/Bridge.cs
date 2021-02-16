@@ -1,4 +1,4 @@
-﻿
+﻿using System.Windows.Media;
 
 namespace TheGooseGame.Square
 {
@@ -9,9 +9,9 @@ namespace TheGooseGame.Square
             player.Position = 12;
         }
 
-        public Bridge(int id): base(id)
+        public Bridge(int id) : base(id)
         {
-                
+            BackColor = Colors.Green;
         }
     }
 }

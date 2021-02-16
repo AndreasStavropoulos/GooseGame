@@ -31,7 +31,7 @@
             Grid.ColumnSpan="2"
             ></Image>
         <StackPanel
-            Grid.Row="1">
+            Grid.Row="1" Grid.Column="0">
             
             <Button
                 x:Name="NewGameButton"
@@ -76,8 +76,13 @@
             </ComboBox>-->
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    x:Name="MyBoard">
 
-        <Grid
+        </StackPanel>
+
+
+        <!--<Grid
             Grid.Row="1"
             Grid.Column="1"
             
@@ -105,14 +110,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-            <!--<StackPanel
+            --><!--<StackPanel
                 x:Name="Zero"
                 Grid.Column="0"
                 Grid.Row="0"
                 >
                 <Label Content="Start"/>
                 <Label Content="player1"/>
-            </StackPanel>-->
+            </StackPanel>--><!--
             
             <Border
                 x:Name="Zero"
@@ -164,7 +169,7 @@
 
 
 
-            <!--<Border
+            --><!--<Border
                 x:Name="One"
                 Grid.Column="1"
                 Grid.Row="0"
@@ -176,44 +181,14 @@
                     <Label Content="1"/>
                     <Label Content="player1"/>
                 </StackPanel>
-            </Border>-->
+            </Border>--><!--
             
 
 
 
 
-        </Grid>
+        </Grid>-->
 
-        <!--<StackPanel
-                x:Name="GamePanel"
-                Grid.Row="1"
-                Grid.Column="1"
-                Background="Beige">
-            <ListView
-                x:Name="ListOfBlocks"
-                Background="{x:Null}"
-                BorderThickness="0"
-                VerticalAlignment="Stretch"
-                >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-
-                        <StackPanel>
-                            <TextBlock  
-                            x:Name="SquareBlockNumber"
-                            Text="{Binding Id}"
-                            FontSize="25"
-                            ></TextBlock>
-                            <TextBlock>
-
-                            </TextBlock>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-        </StackPanel>-->
 
         <StackPanel
             Grid.Row="1"
@@ -230,12 +205,6 @@
                 Background="white"
                 BorderThickness="0"
                 Click="Button_Click">
-                <!--<Button.DataContext>
-                    <Binding Source="{StaticResource myDice}"/>
-                </Button.DataContext>-->
-                <!--<StackPanel>
-                    <Image Source="C:\Users\ansta\source\repos\TheGooseGameGit\GooseGame\TheGooseGame\dices.png"/>
-                </StackPanel>-->
             </Button>
         </StackPanel>
     </Grid>

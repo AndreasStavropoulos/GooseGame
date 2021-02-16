@@ -1,10 +1,12 @@
-﻿namespace TheGooseGame.Square
+﻿using System.Windows.Media;
+
+namespace TheGooseGame.Square
 {
     public class Prison : NormalSquare
     {
         public Prison(int id) : base(id)
         {
-
+            BackColor = Colors.Gray;
         }
 
         public override void Action(IPlayer player)
