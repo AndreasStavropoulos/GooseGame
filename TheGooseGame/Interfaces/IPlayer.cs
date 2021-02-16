@@ -14,10 +14,11 @@ namespace TheGooseGame
 
         bool PlayerWon { get; set; }
 
-        int Position { get; set; }
+        int Position { get;  set; }
 
-        public int AmountOFDice { get; set; }
+        public int AmountOfDice { get; set; }
 
+        public string Pawn { get; set; }
 
         List<int> Throws { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace TheGooseGame
 {
@@ -8,19 +7,27 @@ namespace TheGooseGame
         public Player(int id)
         {
             Id = id;
+            Pawn = "https://freesvg.org/img/red-pawn.png";
         }
 
         public int Id { get; set; }
         public int Position { get; set; }
+
         public bool IsInWell { get; set; }
+
         public bool PlayerWon { get; set; }
+
         public bool IsOnGoose { get; set; }
+
         public bool IsInReverse { get; set; }
+
         public int TurnsToStayStill { get; set; }
-        public int AmountOFDice { get; set; }
+
+        public int AmountOfDice { get; set; }
+
+        public string Pawn { get; set; }
 
         public List<int> Throws { get; set; }
-
 
         public void Move(int diceAmount)
         {

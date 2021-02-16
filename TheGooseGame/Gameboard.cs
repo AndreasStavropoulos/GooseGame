@@ -6,39 +6,33 @@ namespace TheGooseGame
 {
     public class Gameboard : IGameboard
     {
-        private IList<IPlayer> _players;
         private IDice _dice;
+        private IList<IPlayer> _players;
+        private int _turn;
+        private bool _gameOver;
 
-        private IList<ISquare> _squares;
 
-        public IList<ISquare> Squares
-        {
-            get { return _squares; }
-            set { _squares = value; }
-        }
-
+        public IList<ISquare> Squares { get; set; }
 
         public Gameboard(IList<IPlayer> players, IDice dice)
         {
             _players = players;
-            Squares = GenerateBoard();
             _dice = dice;
+            Squares = GenerateBoard();
         }
 
         public void GameLoop()
         {
-            int turn = 0;
-            bool gameOver = false;
-            while (!gameOver)
+            while (!_gameOver)
             {
-                turn++;
+                _turn++;
                 foreach (IPlayer player in _players)
                 {
                     List<int> dices = _dice.Throw();
                     int amountOfDices = dices.Sum();
-                    player.AmountOFDice = amountOfDices;
+                    player.AmountOfDice = amountOfDices;
 
-                    if (turn == 1)
+                    if (_turn == 1)
                     {
                         FirstTurnThrow(player, dices);
                         break;
@@ -57,7 +51,7 @@ namespace TheGooseGame
 
                     if (player.PlayerWon)
                     {
-                        gameOver = true;
+                        _gameOver = true;
                         //Code for End Game
                     }
                 }
@@ -73,6 +67,7 @@ namespace TheGooseGame
         {
             player.Move(diceAmount);
             square.Action(player);
+            square.PlayersOnSquare.Add(player);
         }
 
         private void FirstTurnThrow(IPlayer player, IList<int> dices)
