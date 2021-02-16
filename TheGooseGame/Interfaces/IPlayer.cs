@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
@@ -25,5 +26,7 @@ namespace TheGooseGame
         int TurnsToStayStill { get; set; }
 
         void Move(int diceAmount);
+
+        void MovePlayerToPosition(IPlayer player, int id);
     }
 }

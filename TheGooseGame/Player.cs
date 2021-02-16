@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheGooseGame.Square;
 
 namespace TheGooseGame
 {
@@ -7,7 +8,6 @@ namespace TheGooseGame
         public Player(int id)
         {
             Id = id;
-            Pawn = "https://freesvg.org/img/red-pawn.png";
         }
 
         public int Id { get; set; }
@@ -40,6 +40,12 @@ namespace TheGooseGame
             {
                 Position += diceAmount;
             }
+        }
+
+        // TODO: Best location for this method?
+        public void MovePlayerToPosition(IPlayer player, int square)
+        {
+            player.Position = square;
         }
     }
 }

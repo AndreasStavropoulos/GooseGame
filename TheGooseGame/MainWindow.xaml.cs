@@ -72,9 +72,9 @@ namespace TheGooseGame
                     cellPanel.Children.Add(GenerateLabel(square));
 
                     // Add players on field if any are in List
-                    if (square.PlayersOnSquare.Any())
+                    if (_gameboard.Players.Any())
                     {
-                        var playerPanel = GeneratePlayerIcon(square.PlayersOnSquare);
+                        var playerPanel = GeneratePlayerIcon(_gameboard.Players, square);
                         cellPanel.Children.Add(playerPanel);
                     }
 
@@ -87,15 +87,20 @@ namespace TheGooseGame
             return grid;
         }
 
-        private StackPanel GeneratePlayerIcon(IList<IPlayer> players)
+        private StackPanel GeneratePlayerIcon(IList<IPlayer> players, ISquare square)
         {
             var playerPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal
             };
-
+            
             foreach (IPlayer player in players)
             {
+                if (player.Position != square.Id)
+                {
+                    break;
+                }
+
                 var pawnImage = new Image
                 {
                     Source = new BitmapImage(new Uri(player.Pawn)),

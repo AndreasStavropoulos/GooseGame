@@ -16,13 +16,14 @@ namespace TheGooseGame.Square
                 player.Position -= player.AmountOfDice;
                 while (player.IsInReverse && player.Position == 59 || player.IsInReverse && player.Position == 54)
                 {
-                    player.Position -= player.AmountOfDice;
+                    player.MovePlayerToPosition(player, player.Position - player.AmountOfDice);
                 }
                 player.IsInReverse = false;
             }
             else
             {
-                player.Position += player.AmountOfDice;
+                player.MovePlayerToPosition(player, player.Position + player.AmountOfDice);
+                
             }
         }
     }

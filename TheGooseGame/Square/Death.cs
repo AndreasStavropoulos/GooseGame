@@ -11,7 +11,7 @@ namespace TheGooseGame.Square
 
         public override void Action(IPlayer player)
         {
-            player.Position = 0;
+            player.MovePlayerToPosition(player, 0);
         }
 
 

@@ -13,7 +13,5 @@ namespace TheGooseGame.Square
         {
             player.PlayerWon = true;
         }
-
-        
     }
 }

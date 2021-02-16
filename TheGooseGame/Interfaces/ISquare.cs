@@ -9,8 +9,6 @@ namespace TheGooseGame.Square
 
         public Color BackColor { get; set; }
 
-        public IList<IPlayer> PlayersOnSquare { get; set; }
-
         void Action(IPlayer player);
     }
 }

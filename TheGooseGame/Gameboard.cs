@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using TheGooseGame.Square;
 
 namespace TheGooseGame
@@ -7,53 +8,52 @@ namespace TheGooseGame
     public class Gameboard : IGameboard
     {
         private IDice _dice;
-        private IList<IPlayer> _players;
         private int _turn;
         private bool _gameOver;
 
+        public IList<IPlayer> Players { get; set; }
 
         public IList<ISquare> Squares { get; set; }
 
         public Gameboard(IList<IPlayer> players, IDice dice)
         {
-            _players = players;
+            Players = players;
             _dice = dice;
             Squares = GenerateBoard();
         }
 
         public void GameLoop()
         {
-            while (!_gameOver)
+            _turn++;
+            foreach (IPlayer player in Players)
             {
-                _turn++;
-                foreach (IPlayer player in _players)
+                List<int> dices = _dice.Throw();
+                int amountOfDices = dices.Sum();
+                MessageBox.Show(amountOfDices.ToString());
+
+                player.AmountOfDice = amountOfDices;
+
+                // TODO: Turn per player
+                if (_turn == 1)
                 {
-                    List<int> dices = _dice.Throw();
-                    int amountOfDices = dices.Sum();
-                    player.AmountOfDice = amountOfDices;
+                    FirstTurnThrow(player, dices);
+                }
 
-                    if (_turn == 1)
-                    {
-                        FirstTurnThrow(player, dices);
-                        break;
-                    }
+                if (player.TurnsToStayStill != 0)
+                {
+                    player.TurnsToStayStill--;
+                }
+                else
+                {
+                    int squareToMoveTo = player.Position + amountOfDices;
+                    ISquare square = GetSquare(squareToMoveTo);
+                    MovePlayer(player, amountOfDices, square);
+                }
 
-                    if (player.TurnsToStayStill != 0)
-                    {
-                        player.TurnsToStayStill--;
-                    }
-                    else
-                    {
-                        int squareToMoveTo = player.Position + amountOfDices;
-                        ISquare square = GetSquare(squareToMoveTo);
-                        MovePlayer(player, amountOfDices, square);
-                    }
-
-                    if (player.PlayerWon)
-                    {
-                        _gameOver = true;
-                        //Code for End Game
-                    }
+                if (player.PlayerWon)
+                {
+                    _gameOver = true;
+                    //Code for End Game
                 }
             }
         }
@@ -65,21 +65,21 @@ namespace TheGooseGame
 
         public void MovePlayer(IPlayer player, int diceAmount, ISquare square)
         {
+            // TODO -> Move back when > 63
             player.Move(diceAmount);
             square.Action(player);
-            square.PlayersOnSquare.Add(player);
         }
 
         private void FirstTurnThrow(IPlayer player, IList<int> dices)
         {
             if (dices[0] == 4 && dices[1] == 5 || dices[0] == 5 && dices[1] == 4)
             {
-                player.Position = 26;
+                player.MovePlayerToPosition(player, 26);
             }
 
             if (dices[0] == 6 && dices[1] == 3 || dices[0] == 3 && dices[1] == 6)
             {
-                player.Position = 53;
+                player.MovePlayerToPosition(player, 53);
             }
         }
 
