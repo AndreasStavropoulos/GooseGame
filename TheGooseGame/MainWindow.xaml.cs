@@ -31,7 +31,7 @@ namespace TheGooseGame
         private void ChoosePlayers_Click(object sender, RoutedEventArgs e)
         {
             _playerRepo = new PlayerRepo();
-            _playerList = _playerRepo.ListOfPlayers(1);
+            _playerList = _playerRepo.ListOfPlayers(2);
             _gameboard = new Gameboard(_playerList, _dice);
             UpdateScreen();
         }
